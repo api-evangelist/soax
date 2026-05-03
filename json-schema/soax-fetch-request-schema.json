@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/soax/blob/main/json-schema/soax-fetch-request-schema.json",
+  "title": "SOAX Fetch Content Request",
+  "description": "Schema for the SOAX Web Data API fetch-content request body.",
+  "type": "object",
+  "required": ["url"],
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Target URL to fetch content from"
+    },
+    "proxy_settings": {
+      "type": "object",
+      "description": "Proxy configuration for the request",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code for geo-targeting",
+          "examples": ["us", "gb", "de", "jp"]
+        },
+        "type": {
+          "type": "integer",
+          "enum": [1, 2, 3],
+          "description": "Proxy type: 1=residential, 2=mobile, 3=datacenter"
+        },
+        "city": {
+          "type": "string",
+          "description": "Target city for proxy selection"
+        },
+        "region": {
+          "type": "string",
+          "description": "Target region/state for proxy selection"
+        },
+        "isp": {
+          "type": "string",
+          "description": "Target ISP for residential proxy selection"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "description": "Configure the response format",
+      "properties": {
+        "body": {
+          "type": "boolean",
+          "default": true,
+          "description": "Return rendered HTML body"
+        },
+        "screenshot": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return base64-encoded PNG screenshot"
+        },
+        "xhr": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return XHR/fetch API calls captured during rendering"
+        },
+        "markdown": {
+          "type": "boolean",
+          "default": false,
+          "description": "Return lightweight Markdown version of content"
+        }
+      }
+    },
+    "session": {
+      "type": "object",
+      "description": "Session configuration for sticky IP sessions",
+      "properties": {
+        "sticky": {
+          "type": "boolean",
+          "default": false,
+          "description": "Maintain the same IP across multiple requests"
+        },
+        "session_id": {
+          "type": "string",
+          "description": "Session identifier for associating sticky requests"
+        }
+      }
+    }
+  }
+}

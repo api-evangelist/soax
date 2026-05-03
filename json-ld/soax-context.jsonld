@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "soax": "https://soax.com/ontology/",
+
+    "ProxyRequest": "soax:ProxyRequest",
+    "ProxyPool": "soax:ProxyPool",
+    "ResidentialProxy": "soax:ResidentialProxy",
+    "MobileProxy": "soax:MobileProxy",
+    "DatacenterProxy": "soax:DatacenterProxy",
+    "ScrapeRequest": "soax:ScrapeRequest",
+    "SerpRequest": "soax:SerpRequest",
+    "EcommerceRequest": "soax:EcommerceRequest",
+    "GeoTarget": "soax:GeoTarget",
+    "IpSlot": "soax:IpSlot",
+    "WebContent": "soax:WebContent",
+    "SearchResult": "soax:SearchResult",
+    "ProductData": "soax:ProductData",
+
+    "url": "schema:url",
+    "country": "schema:addressCountry",
+    "city": "schema:addressLocality",
+    "region": "schema:addressRegion",
+    "isp": "soax:internetServiceProvider",
+    "carrier": "soax:mobileCarrier",
+    "proxyType": "soax:proxyType",
+    "stickySession": "soax:stickySession",
+    "sessionId": "schema:identifier",
+    "ipAddress": "schema:ipAddressFromHeaders",
+    "slot": "soax:slot",
+    "apiKey": "schema:accessCode",
+    "packageKey": "soax:packageKey",
+
+    "htmlBody": "schema:text",
+    "screenshot": "schema:image",
+    "xhrResponse": "soax:xhrResponse",
+    "markdown": "soax:markdownContent",
+
+    "searchQuery": "schema:query",
+    "searchEngine": "soax:searchEngine",
+    "organicResults": "soax:organicResults",
+    "featuredSnippet": "soax:featuredSnippet",
+
+    "price": "schema:price",
+    "priceCurrency": "schema:priceCurrency",
+    "stockStatus": "schema:availability",
+    "productRating": "schema:ratingValue",
+    "reviewCount": "schema:reviewCount"
+  }
+}

@@ -1,0 +1,92 @@
+extends: spectral:oas
+rules:
+  soax-api-key-auth:
+    description: SOAX APIs use API key authentication
+    message: "SOAX endpoints must use API key authentication via X-SOAX-API-Secret or api-key header."
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - apiKey
+
+  soax-tags-required:
+    description: All SOAX API operations must have tags
+    message: "Operation '{{path}}' must include at least one tag."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      field: tags
+      function: truthy
+
+  soax-operation-id-camel-case:
+    description: Operation IDs should use camelCase
+    message: "operationId '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths.*.*.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  soax-path-versioned:
+    description: All SOAX API paths must include a version prefix
+    message: "Path '{{path}}' must include a version prefix (/v1/, /v2/, etc.)."
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+"
+
+  soax-request-body-json:
+    description: POST endpoints should accept JSON
+    message: "POST operations should accept application/json content type."
+    severity: warn
+    given: "$.paths.*.post.requestBody.content"
+    then:
+      function: truthy
+
+  soax-response-200-defined:
+    description: All operations should define a 200/201 success response
+    message: "Operation must define at least one success response (200 or 201)."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            responses:
+              anyOf:
+                - required: ['200']
+                - required: ['201']
+
+  soax-error-401-defined:
+    description: Authenticated endpoints should define 401 response
+    message: "Endpoints with security should document a 401 Unauthorized response."
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: responses
+      function: truthy
+
+  soax-package-key-path-param:
+    description: Package management paths should use package_key parameter
+    message: "Proxy management paths must parameterize the package identifier as 'package_key'."
+    severity: warn
+    given: "$.paths[*].parameters[?(@.in == 'path')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(package_key|[a-z][a-z_]*)$"
+
+  soax-response-schema-defined:
+    description: Responses should reference a schema
+    message: "Response content should define a schema for documentation clarity."
+    severity: warn
+    given: "$.paths.*.*.responses.*.content.*.schema"
+    then:
+      function: truthy

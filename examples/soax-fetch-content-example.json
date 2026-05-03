@@ -1,0 +1,42 @@
+{
+  "title": "Fetch Web Content",
+  "description": "Example request and response for fetching fully rendered web content with SOAX Web Data API",
+  "request": {
+    "method": "POST",
+    "url": "https://scraping.soax.com/v2/webdata/fetch-content",
+    "headers": {
+      "X-SOAX-API-Secret": "your-api-key-here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "url": "https://www.example.com/products",
+      "proxy_settings": {
+        "country": "us",
+        "type": 1
+      },
+      "response": {
+        "body": true,
+        "screenshot": false,
+        "xhr": false,
+        "markdown": true
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": 200,
+      "url": "https://www.example.com/products",
+      "body": "<!DOCTYPE html><html><head><title>Products</title></head><body>...</body></html>",
+      "markdown": "# Products\n\nWelcome to our product catalog...",
+      "metadata": {
+        "title": "Products - Example Store",
+        "description": "Browse our full product catalog",
+        "proxy_used": "203.0.113.45"
+      }
+    }
+  }
+}

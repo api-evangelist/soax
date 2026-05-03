@@ -1,0 +1,108 @@
+{
+  "title": "SOAX Fetch Content Request Structure",
+  "description": "JSON Structure documentation for the SOAX Web Data API fetch-content request",
+  "type": "object",
+  "fields": [
+    {
+      "name": "url",
+      "type": "string (uri)",
+      "required": true,
+      "description": "Target URL to fetch content from"
+    },
+    {
+      "name": "proxy_settings",
+      "type": "object",
+      "required": false,
+      "description": "Proxy configuration for geo-targeting and proxy type selection",
+      "fields": [
+        {
+          "name": "country",
+          "type": "string",
+          "required": false,
+          "description": "ISO 3166-1 alpha-2 country code (e.g. 'us', 'gb', 'de')"
+        },
+        {
+          "name": "type",
+          "type": "integer (1|2|3)",
+          "required": false,
+          "description": "Proxy type: 1=residential, 2=mobile, 3=datacenter"
+        },
+        {
+          "name": "city",
+          "type": "string",
+          "required": false,
+          "description": "Target city for proxy selection (use /v1/geo/cities to list options)"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "description": "Target region/state (use /v1/geo/regions to list options)"
+        },
+        {
+          "name": "isp",
+          "type": "string",
+          "required": false,
+          "description": "Target ISP for residential proxy selection"
+        }
+      ]
+    },
+    {
+      "name": "response",
+      "type": "object",
+      "required": false,
+      "description": "Configure what content to include in the API response",
+      "fields": [
+        {
+          "name": "body",
+          "type": "boolean",
+          "required": false,
+          "default": true,
+          "description": "Include fully rendered HTML body"
+        },
+        {
+          "name": "screenshot",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Include base64-encoded PNG screenshot of rendered page"
+        },
+        {
+          "name": "xhr",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Include XHR/fetch API calls captured during page rendering"
+        },
+        {
+          "name": "markdown",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Include lightweight Markdown version of page content"
+        }
+      ]
+    },
+    {
+      "name": "session",
+      "type": "object",
+      "required": false,
+      "description": "Session configuration for maintaining sticky IP sessions",
+      "fields": [
+        {
+          "name": "sticky",
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "description": "Keep the same IP address across multiple requests in the session"
+        },
+        {
+          "name": "session_id",
+          "type": "string",
+          "required": false,
+          "description": "Unique session identifier to associate related requests"
+        }
+      ]
+    }
+  ]
+}

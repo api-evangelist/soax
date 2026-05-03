@@ -1,0 +1,377 @@
+openapi: 3.0.3
+info:
+  title: SOAX Web Data API
+  description: >-
+    The SOAX Web Data API enables extraction of fully rendered web content from any public URL. It handles JavaScript rendering, CAPTCHA bypass, anti-bot measures, and headless browser management automatically. Returns HTML, Markdown, screenshots, and XHR response data.
+  version: '2'
+  contact:
+    name: SOAX Support
+    url: https://helpcenter.soax.com/
+  license:
+    name: Proprietary
+    url: https://soax.com/terms-of-service
+servers:
+  - url: https://scraping.soax.com
+    description: SOAX Scraping API endpoint
+security:
+  - APIKeyHeader: []
+tags:
+  - name: Web Data
+    description: Extract content from web pages
+  - name: SERP Data
+    description: Search engine result page extraction
+  - name: Ecommerce Data
+    description: E-commerce pricing and inventory data
+paths:
+  /v2/webdata/fetch-content:
+    post:
+      operationId: fetchWebContent
+      summary: Fetch Web Content
+      description: >-
+        Fetch fully rendered content from any public web page. Handles JavaScript execution, CAPTCHA bypass, anti-bot circumvention, and headless browser management automatically. Returns HTML body, screenshots, XHR calls, or Markdown depending on response configuration.
+      tags:
+        - Web Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchContentRequest'
+            example:
+              url: "https://www.example.com"
+              proxy_settings:
+                country: "us"
+                type: 1
+              response:
+                body: true
+                screenshot: false
+                xhr: false
+                markdown: false
+      responses:
+        '200':
+          description: Successfully extracted web content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchContentResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Invalid or missing API key
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Internal server error or target site failure
+  /v2/webdata/serp:
+    post:
+      operationId: fetchSerpData
+      summary: Fetch SERP Data
+      description: >-
+        Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets.
+      tags:
+        - SERP Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerpRequest'
+      responses:
+        '200':
+          description: SERP data extracted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerpResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v2/webdata/ecommerce:
+    post:
+      operationId: fetchEcommerceData
+      summary: Fetch Ecommerce Data
+      description: >-
+        Extract real-time pricing, product details, stock levels, and reviews from e-commerce sites including Amazon, eBay, and major retailer websites.
+      tags:
+        - Ecommerce Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EcommerceRequest'
+      responses:
+        '200':
+          description: Ecommerce data extracted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EcommerceResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-SOAX-API-Secret
+      description: SOAX API key from your dashboard Scraper APIs section
+  schemas:
+    FetchContentRequest:
+      type: object
+      required:
+        - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The target URL to fetch content from
+          example: "https://www.example.com"
+        proxy_settings:
+          type: object
+          description: Proxy configuration for the request
+          properties:
+            country:
+              type: string
+              description: ISO 3166-1 alpha-2 country code for geo-targeting
+              example: "us"
+            type:
+              type: integer
+              description: Proxy type identifier (1=residential, 2=mobile, 3=datacenter)
+              enum: [1, 2, 3]
+              example: 1
+            city:
+              type: string
+              description: Target city for geo-targeting
+            region:
+              type: string
+              description: Target region/state for geo-targeting
+            isp:
+              type: string
+              description: Target ISP for proxy selection
+        response:
+          type: object
+          description: Configure what content to return in the response
+          properties:
+            body:
+              type: boolean
+              default: true
+              description: Return the fully rendered HTML body
+            screenshot:
+              type: boolean
+              default: false
+              description: Return a PNG screenshot of the rendered page
+            xhr:
+              type: boolean
+              default: false
+              description: Return XHR/fetch background API responses captured during rendering
+            markdown:
+              type: boolean
+              default: false
+              description: Return a lightweight Markdown version of the page content
+        session:
+          type: object
+          description: Session configuration for stateful browsing
+          properties:
+            sticky:
+              type: boolean
+              default: false
+              description: Maintain the same IP across multiple requests
+            session_id:
+              type: string
+              description: Session identifier for sticky sessions
+    FetchContentResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: HTTP status code of the fetched page
+          example: 200
+        url:
+          type: string
+          format: uri
+          description: Final URL after redirects
+        body:
+          type: string
+          description: Fully rendered HTML content of the page
+        screenshot:
+          type: string
+          format: byte
+          description: Base64-encoded PNG screenshot (if requested)
+        xhr:
+          type: array
+          description: XHR/fetch calls captured during page rendering
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                description: URL of the XHR request
+              method:
+                type: string
+                description: HTTP method
+              status:
+                type: integer
+                description: Response status code
+              body:
+                type: string
+                description: Response body
+        markdown:
+          type: string
+          description: Markdown representation of the page content (if requested)
+        metadata:
+          type: object
+          properties:
+            title:
+              type: string
+              description: Page title
+            description:
+              type: string
+              description: Meta description
+            proxy_used:
+              type: string
+              description: The proxy IP used for the request
+    SerpRequest:
+      type: object
+      required:
+        - query
+        - search_engine
+      properties:
+        query:
+          type: string
+          description: Search query string
+          example: "best proxy providers 2026"
+        search_engine:
+          type: string
+          enum: [google, bing, yahoo, yandex, baidu]
+          description: Target search engine
+          example: "google"
+        country:
+          type: string
+          description: Country for localized search results
+          example: "us"
+        language:
+          type: string
+          description: Language code for search results
+          example: "en"
+        page:
+          type: integer
+          default: 1
+          description: Result page number
+        results_per_page:
+          type: integer
+          default: 10
+          description: Number of results per page
+    SerpResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query
+        total_results:
+          type: integer
+          description: Total number of results found
+        organic_results:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: integer
+              title:
+                type: string
+              url:
+                type: string
+              snippet:
+                type: string
+        featured_snippet:
+          type: object
+          properties:
+            title:
+              type: string
+            content:
+              type: string
+            url:
+              type: string
+        ads:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: integer
+              title:
+                type: string
+              url:
+                type: string
+              description:
+                type: string
+    EcommerceRequest:
+      type: object
+      required:
+        - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the product page to extract data from
+        extract:
+          type: array
+          description: Data fields to extract
+          items:
+            type: string
+            enum: [price, title, description, images, rating, reviews, stock, sku, seller]
+        country:
+          type: string
+          description: Country for localized pricing
+    EcommerceResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        price:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+            original_price:
+              type: number
+            discount_percentage:
+              type: number
+        stock:
+          type: string
+          enum: [in_stock, out_of_stock, limited]
+        rating:
+          type: number
+          minimum: 0
+          maximum: 5
+        reviews_count:
+          type: integer
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error description
+        request_id:
+          type: string
+          description: Request identifier for support

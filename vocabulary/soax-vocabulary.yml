@@ -1,0 +1,135 @@
+title: SOAX Vocabulary
+description: >-
+  Domain vocabulary for SOAX proxy infrastructure and web data extraction platform — covering proxy types, geo-targeting, session management, anti-bot bypass, and data extraction concepts.
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+  - Proxy
+  - Web Scraping
+  - Data Extraction
+
+terms:
+  - term: Residential Proxy
+    definition: >-
+      A proxy IP address sourced from a real residential internet user's device. Residential proxies are legitimate ISP-assigned IPs that appear as genuine user traffic to target websites, making them harder to block. SOAX offers 155M+ residential IPs.
+    tags:
+      - Proxy Types
+      - Infrastructure
+
+  - term: Mobile Proxy
+    definition: >-
+      A proxy IP address from a mobile device using a cellular data connection (3G/4G/5G). Mobile proxies carry mobile carrier attribution, which is useful for mobile-specific geo-targeting and testing. SOAX offers 33M+ mobile IPs.
+    tags:
+      - Proxy Types
+      - Infrastructure
+
+  - term: Datacenter Proxy
+    definition: >-
+      A proxy IP address hosted in a data center rather than a residential location. Datacenter proxies offer higher speed and lower latency than residential proxies but are more easily detected by anti-bot systems. SOAX offers 300K+ datacenter IPs.
+    tags:
+      - Proxy Types
+      - Infrastructure
+
+  - term: Rotating Proxy
+    definition: >-
+      A proxy configuration where the IP address automatically changes between requests or at a configured interval. Used for large-scale scraping to avoid IP-based rate limiting and blocking.
+    tags:
+      - Proxy
+      - Session Management
+
+  - term: Sticky Session
+    definition: >-
+      A proxy session that maintains the same IP address across multiple consecutive requests. Useful for workflows that require consistent identity, such as logging in, maintaining shopping carts, or multi-step form submissions.
+    tags:
+      - Session Management
+      - Proxy
+
+  - term: Geo-targeting
+    definition: >-
+      The ability to select proxy IPs from a specific country, region, city, ISP, or mobile carrier. SOAX supports geo-targeting across 195+ countries at country, region/state, city, and ISP levels.
+    tags:
+      - Geo Targeting
+      - Proxy
+
+  - term: Anti-Bot Bypass
+    definition: >-
+      Technology for circumventing website bot detection systems including CAPTCHAs, JavaScript challenges, browser fingerprinting, WAF rules, and behavioral analysis. SOAX Web Data API handles these automatically.
+    tags:
+      - Web Scraping
+      - Security
+
+  - term: CAPTCHA Solving
+    definition: >-
+      Automated solving of CAPTCHA challenges (reCAPTCHA, hCaptcha, Cloudflare Turnstile) presented by websites to detect bots. SOAX includes built-in CAPTCHA solving in the Web Data API.
+    tags:
+      - Anti-Bot
+      - Web Scraping
+
+  - term: JavaScript Rendering
+    definition: >-
+      Executing JavaScript on web pages using a headless browser to produce fully rendered HTML, including dynamic content loaded by SPAs, React, Vue, and Angular applications. SOAX handles this transparently.
+    tags:
+      - Web Scraping
+      - Technology
+
+  - term: XHR Capture
+    definition: >-
+      Intercepting and returning the XMLHttpRequest (XHR) and Fetch API calls made by a web page during rendering. Useful for extracting structured JSON data from background API calls rather than parsing HTML.
+    tags:
+      - Web Scraping
+      - Data Extraction
+
+  - term: SERP
+    definition: >-
+      Search Engine Results Page — the page displayed by a search engine in response to a query. SOAX's SERP Data API extracts organic results, ads, and featured snippets from Google, Bing, and other search engines.
+    tags:
+      - Data Extraction
+      - SEO
+
+  - term: Package Key
+    definition: >-
+      A unique identifier assigned to a SOAX proxy subscription package. Used to authenticate proxy management API requests and identify which pool to draw proxies from.
+    tags:
+      - Authentication
+      - API
+
+  - term: IP Whitelist
+    definition: >-
+      A list of IP addresses authorized to use a SOAX proxy package without username/password authentication. Whitelisted IPs can connect directly to the proxy endpoint.
+    tags:
+      - Authentication
+      - Security
+
+  - term: Headless Browser
+    definition: >-
+      A web browser running without a graphical user interface, controlled programmatically. SOAX uses headless browsers (Chromium-based) to render JavaScript-heavy pages for the Web Data API.
+    tags:
+      - Technology
+      - Web Scraping
+
+  - term: purl (Package URL)
+    definition: >-
+      A standardized URL scheme for identifying software packages across package managers. Not used in SOAX context — see Snyk Container vocabulary for purl definitions.
+    tags:
+      - N/A
+
+  - term: Web Data Studio
+    definition: >-
+      SOAX's suite of data extraction products including the Web Data API, SERP Data API, Ecommerce Data API, and Managed Data Acquisition services. Designed for teams needing clean, structured data at scale.
+    tags:
+      - Products
+      - Data Extraction
+
+  - term: WAF (Web Application Firewall)
+    definition: >-
+      A security system that monitors and filters HTTP traffic to protect web applications from bot traffic, scraping, and attacks. SOAX's anti-bot bypass can circumvent many WAF rules to access publicly available data.
+    tags:
+      - Security
+      - Anti-Bot
+
+  - term: IP Pool
+    definition: >-
+      The collection of proxy IP addresses available within a SOAX package for a given proxy type (residential, mobile, datacenter). Pool size varies by proxy type and geography.
+    tags:
+      - Infrastructure
+      - Proxy
