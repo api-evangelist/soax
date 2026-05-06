@@ -1,231 +1,491 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "SOAX Data Collection"
-  description: >-
-    Unified web data collection workflow combining SOAX's Web Data API and Proxy Management API. Enables data engineers, analysts, and developers to scrape public web data at scale with automatic CAPTCHA bypass, JavaScript rendering, geo-targeted proxy selection, and structured data extraction from SERP and e-commerce sites.
+  label: SOAX Data Collection
+  description: Unified web data collection workflow combining SOAX's Web Data API and Proxy Management API. Enables data engineers,
+    analysts, and developers to scrape public web data at scale with automatic CAPTCHA bypass, JavaScript rendering, geo-targeted
+    proxy selection, and structured data extraction from SERP and e-commerce sites.
   tags:
-    - SOAX
-    - Web Scraping
-    - Data Collection
-    - Proxy Management
-    - Anti-Bot Bypass
-    - SERP
-    - Ecommerce
-    - Geo Targeting
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - SOAX
+  - Web Scraping
+  - Data Collection
+  - Proxy Management
+  - Anti-Bot Bypass
+  - SERP
+  - Ecommerce
+  - Geo Targeting
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SOAX_API_SECRET: SOAX_API_SECRET
-      SOAX_API_KEY: SOAX_API_KEY
-      SOAX_PACKAGE_KEY: SOAX_PACKAGE_KEY
-
+- namespace: env
+  keys:
+    SOAX_API_SECRET: SOAX_API_SECRET
+    SOAX_API_KEY: SOAX_API_KEY
+    SOAX_PACKAGE_KEY: SOAX_PACKAGE_KEY
 capability:
   consumes:
-    - import: soax-web-data
-      location: ./shared/soax-web-data-api.yaml
-    - import: soax-proxy-mgmt
-      location: ./shared/soax-proxy-management-api.yaml
-
+  - type: http
+    namespace: soax-web-data
+    baseUri: https://scraping.soax.com
+    description: SOAX Web Data API for extracting content from any public website.
+    authentication:
+      type: apikey
+      key: X-SOAX-API-Secret
+      value: '{{SOAX_API_SECRET}}'
+      placement: header
+    resources:
+    - name: web-content
+      path: /v2/webdata/fetch-content
+      description: Fetch fully rendered content from any URL
+      operations:
+      - name: fetch-web-content
+        method: POST
+        description: Extract fully rendered HTML, screenshots, XHR, or Markdown from any public web page
+        inputParameters:
+        - name: url
+          in: body
+          type: string
+          required: true
+          description: Target URL to fetch
+        - name: country
+          in: body
+          type: string
+          required: false
+          description: Country code for proxy geo-targeting
+        - name: proxy_type
+          in: body
+          type: integer
+          required: false
+          description: Proxy type (1=residential, 2=mobile, 3=datacenter)
+        - name: return_body
+          in: body
+          type: boolean
+          required: false
+          description: Return rendered HTML body
+        - name: return_screenshot
+          in: body
+          type: boolean
+          required: false
+          description: Return PNG screenshot
+        - name: return_xhr
+          in: body
+          type: boolean
+          required: false
+          description: Return XHR background responses
+        - name: return_markdown
+          in: body
+          type: boolean
+          required: false
+          description: Return Markdown version of content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            url: '{{tools.url}}'
+            proxy_settings:
+              country: '{{tools.country}}'
+              type: '{{tools.proxy_type}}'
+            response:
+              body: '{{tools.return_body}}'
+              screenshot: '{{tools.return_screenshot}}'
+              xhr: '{{tools.return_xhr}}'
+              markdown: '{{tools.return_markdown}}'
+    - name: serp
+      path: /v2/webdata/serp
+      description: Search engine result page extraction
+      operations:
+      - name: fetch-serp-data
+        method: POST
+        description: Extract search results from Google, Bing, and other search engines
+        inputParameters:
+        - name: query
+          in: body
+          type: string
+          required: true
+          description: Search query
+        - name: search_engine
+          in: body
+          type: string
+          required: true
+          description: Target search engine (google, bing, yahoo)
+        - name: country
+          in: body
+          type: string
+          required: false
+          description: Country for localized results
+        outputRawFormat: json
+        outputParameters:
+        - name: results
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            query: '{{tools.query}}'
+            search_engine: '{{tools.search_engine}}'
+            country: '{{tools.country}}'
+    - name: ecommerce
+      path: /v2/webdata/ecommerce
+      description: E-commerce product data extraction
+      operations:
+      - name: fetch-ecommerce-data
+        method: POST
+        description: Extract real-time pricing, stock, and product details from e-commerce sites
+        inputParameters:
+        - name: url
+          in: body
+          type: string
+          required: true
+          description: Product page URL
+        - name: extract
+          in: body
+          type: array
+          required: false
+          description: Fields to extract (price, title, stock, rating, etc.)
+        outputRawFormat: json
+        outputParameters:
+        - name: product
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            url: '{{tools.url}}'
+            extract: '{{tools.extract}}'
+  - type: http
+    namespace: soax-proxy-mgmt
+    baseUri: https://partner.api.soax.com
+    description: SOAX Partner API for proxy package management.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{SOAX_API_KEY}}'
+      placement: header
+    resources:
+    - name: ip-list
+      path: /v1/account/package/{package_key}/ip-list
+      description: Retrieve whitelisted IPs for a package
+      operations:
+      - name: list-whitelisted-ips
+        method: GET
+        description: Get all whitelisted IP slots for a proxy package
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          required: true
+          description: Proxy package key
+        outputRawFormat: json
+        outputParameters:
+        - name: slots
+          type: object
+          value: $.slots
+    - name: update-ip
+      path: /v1/account/package/{package_key}/update-ip
+      description: Update whitelisted IP in a slot
+      operations:
+      - name: update-whitelisted-ip
+        method: POST
+        description: Add or update an IP address in a proxy whitelist slot
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          required: true
+          description: Proxy package key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+          - ip: '{{tools.ip}}'
+            slot: '{{tools.slot}}'
+            comment: '{{tools.comment}}'
+    - name: detach-ip
+      path: /v1/account/package/{package_key}/detach-ip
+      description: Remove whitelisted IP from a slot
+      operations:
+      - name: detach-whitelisted-ip
+        method: POST
+        description: Remove an IP address from a proxy whitelist slot
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          required: true
+          description: Proxy package key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+          - slot: '{{tools.slot}}'
+    - name: cities
+      path: /v1/geo/cities
+      description: Available cities for geo-targeting
+      operations:
+      - name: list-cities
+        method: GET
+        description: Get list of cities available for proxy geo-targeting
+        inputParameters:
+        - name: country
+          in: query
+          type: string
+          required: false
+          description: Filter by country code
+        outputRawFormat: json
+        outputParameters:
+        - name: cities
+          type: object
+          value: $.cities
+    - name: regions
+      path: /v1/geo/regions
+      description: Available regions for geo-targeting
+      operations:
+      - name: list-regions
+        method: GET
+        description: Get list of regions/states available for proxy geo-targeting
+        inputParameters:
+        - name: country
+          in: query
+          type: string
+          required: false
+          description: Filter by country code
+        outputRawFormat: json
+        outputParameters:
+        - name: regions
+          type: object
+          value: $.regions
+    - name: carriers
+      path: /v1/geo/carriers
+      description: Available mobile carriers for proxy targeting
+      operations:
+      - name: list-carriers
+        method: GET
+        description: Get list of mobile carriers available for mobile proxy targeting
+        inputParameters:
+        - name: country
+          in: query
+          type: string
+          required: false
+          description: Filter by country code
+        outputRawFormat: json
+        outputParameters:
+        - name: carriers
+          type: object
+          value: $.carriers
+    - name: isps
+      path: /v1/geo/isps
+      description: Available WiFi ISPs for residential proxy targeting
+      operations:
+      - name: list-wifi-isps
+        method: GET
+        description: Get list of WiFi ISPs available for residential proxy targeting
+        inputParameters:
+        - name: country
+          in: query
+          type: string
+          required: false
+          description: Filter by country code
+        outputRawFormat: json
+        outputParameters:
+        - name: isps
+          type: object
+          value: $.isps
   exposes:
-    - type: rest
-      port: 8080
-      namespace: soax-data-collection-api
-      description: "Unified REST API for SOAX web data collection, SERP extraction, e-commerce data, and proxy management."
-      resources:
-        - path: /v1/fetch
-          name: web-content
-          description: "Extract rendered web content from any public URL"
-          operations:
-            - method: POST
-              name: fetch-content
-              description: "Fetch fully rendered HTML, screenshots, or Markdown from any public web page"
-              call: "soax-web-data.fetch-web-content"
-              with:
-                url: "rest.url"
-                country: "rest.country"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/serp
-          name: search-results
-          description: "Search engine result page data"
-          operations:
-            - method: POST
-              name: fetch-serp
-              description: "Extract structured search results from Google, Bing, or other search engines"
-              call: "soax-web-data.fetch-serp-data"
-              with:
-                query: "rest.query"
-                search_engine: "rest.search_engine"
-                country: "rest.country"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/ecommerce
-          name: product-data
-          description: "E-commerce product pricing and inventory data"
-          operations:
-            - method: POST
-              name: fetch-product
-              description: "Extract real-time price, stock, and product details from e-commerce pages"
-              call: "soax-web-data.fetch-ecommerce-data"
-              with:
-                url: "rest.url"
-                extract: "rest.extract"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/proxy/whitelist
-          name: ip-whitelist
-          description: "Manage IP whitelist for proxy authentication"
-          operations:
-            - method: GET
-              name: list-whitelisted-ips
-              description: "List all whitelisted IPs in proxy package slots"
-              call: "soax-proxy-mgmt.list-whitelisted-ips"
-              with:
-                package_key: "{{SOAX_PACKAGE_KEY}}"
-              outputParameters:
-                - type: object
-                  mapping: "$.slots"
-
-        - path: /v1/proxy/cities
-          name: proxy-cities
-          description: "Available cities for geo-targeted proxy selection"
-          operations:
-            - method: GET
-              name: list-cities
-              description: "List all cities available for proxy geo-targeting"
-              call: "soax-proxy-mgmt.list-cities"
-              with:
-                country: "rest.country"
-              outputParameters:
-                - type: object
-                  mapping: "$.cities"
-
-        - path: /v1/proxy/carriers
-          name: mobile-carriers
-          description: "Available mobile carriers for mobile proxy targeting"
-          operations:
-            - method: GET
-              name: list-carriers
-              description: "List mobile carriers available for mobile proxy selection"
-              call: "soax-proxy-mgmt.list-carriers"
-              with:
-                country: "rest.country"
-              outputParameters:
-                - type: object
-                  mapping: "$.carriers"
-
-    - type: mcp
-      port: 9090
-      namespace: soax-data-collection-mcp
-      transport: http
-      description: "MCP server for AI-assisted web data collection, competitive intelligence, and market research using SOAX proxies."
-      tools:
-        - name: fetch-web-content
-          description: "Extract fully rendered HTML, screenshots, or Markdown from any public web page with automatic CAPTCHA bypass and anti-bot protection"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "soax-web-data.fetch-web-content"
-          with:
-            url: "tools.url"
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: fetch-serp-data
-          description: "Extract structured search engine results from Google, Bing, or other search engines with geo-targeting"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "soax-web-data.fetch-serp-data"
-          with:
-            query: "tools.query"
-            search_engine: "tools.search_engine"
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: fetch-ecommerce-data
-          description: "Extract real-time pricing, stock levels, and product details from e-commerce websites"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "soax-web-data.fetch-ecommerce-data"
-          with:
-            url: "tools.url"
-            extract: "tools.extract"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-whitelisted-ips
-          description: "List all IP addresses whitelisted in SOAX proxy package slots"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "soax-proxy-mgmt.list-whitelisted-ips"
-          with:
-            package_key: "{{SOAX_PACKAGE_KEY}}"
-          outputParameters:
-            - type: object
-              mapping: "$.slots"
-
-        - name: list-proxy-cities
-          description: "List all cities available for SOAX geo-targeted proxy selection"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "soax-proxy-mgmt.list-cities"
-          with:
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$.cities"
-
-        - name: list-proxy-regions
-          description: "List all regions/states available for SOAX geo-targeted proxy selection"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "soax-proxy-mgmt.list-regions"
-          with:
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$.regions"
-
-        - name: list-mobile-carriers
-          description: "List mobile carriers available for SOAX mobile proxy targeting"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "soax-proxy-mgmt.list-carriers"
-          with:
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$.carriers"
-
-        - name: list-wifi-isps
-          description: "List WiFi ISPs available for SOAX residential proxy targeting"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "soax-proxy-mgmt.list-wifi-isps"
-          with:
-            country: "tools.country"
-          outputParameters:
-            - type: object
-              mapping: "$.isps"
+  - type: rest
+    port: 8080
+    namespace: soax-data-collection-api
+    description: Unified REST API for SOAX web data collection, SERP extraction, e-commerce data, and proxy management.
+    resources:
+    - path: /v1/fetch
+      name: web-content
+      description: Extract rendered web content from any public URL
+      operations:
+      - method: POST
+        name: fetch-content
+        description: Fetch fully rendered HTML, screenshots, or Markdown from any public web page
+        call: soax-web-data.fetch-web-content
+        with:
+          url: rest.url
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/serp
+      name: search-results
+      description: Search engine result page data
+      operations:
+      - method: POST
+        name: fetch-serp
+        description: Extract structured search results from Google, Bing, or other search engines
+        call: soax-web-data.fetch-serp-data
+        with:
+          query: rest.query
+          search_engine: rest.search_engine
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce
+      name: product-data
+      description: E-commerce product pricing and inventory data
+      operations:
+      - method: POST
+        name: fetch-product
+        description: Extract real-time price, stock, and product details from e-commerce pages
+        call: soax-web-data.fetch-ecommerce-data
+        with:
+          url: rest.url
+          extract: rest.extract
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/proxy/whitelist
+      name: ip-whitelist
+      description: Manage IP whitelist for proxy authentication
+      operations:
+      - method: GET
+        name: list-whitelisted-ips
+        description: List all whitelisted IPs in proxy package slots
+        call: soax-proxy-mgmt.list-whitelisted-ips
+        with:
+          package_key: '{{SOAX_PACKAGE_KEY}}'
+        outputParameters:
+        - type: object
+          mapping: $.slots
+    - path: /v1/proxy/cities
+      name: proxy-cities
+      description: Available cities for geo-targeted proxy selection
+      operations:
+      - method: GET
+        name: list-cities
+        description: List all cities available for proxy geo-targeting
+        call: soax-proxy-mgmt.list-cities
+        with:
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.cities
+    - path: /v1/proxy/carriers
+      name: mobile-carriers
+      description: Available mobile carriers for mobile proxy targeting
+      operations:
+      - method: GET
+        name: list-carriers
+        description: List mobile carriers available for mobile proxy selection
+        call: soax-proxy-mgmt.list-carriers
+        with:
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.carriers
+  - type: mcp
+    port: 9090
+    namespace: soax-data-collection-mcp
+    transport: http
+    description: MCP server for AI-assisted web data collection, competitive intelligence, and market research using SOAX
+      proxies.
+    tools:
+    - name: fetch-web-content
+      description: Extract fully rendered HTML, screenshots, or Markdown from any public web page with automatic CAPTCHA bypass
+        and anti-bot protection
+      hints:
+        readOnly: true
+        openWorld: true
+      call: soax-web-data.fetch-web-content
+      with:
+        url: tools.url
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-serp-data
+      description: Extract structured search engine results from Google, Bing, or other search engines with geo-targeting
+      hints:
+        readOnly: true
+        openWorld: true
+      call: soax-web-data.fetch-serp-data
+      with:
+        query: tools.query
+        search_engine: tools.search_engine
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-ecommerce-data
+      description: Extract real-time pricing, stock levels, and product details from e-commerce websites
+      hints:
+        readOnly: true
+        openWorld: true
+      call: soax-web-data.fetch-ecommerce-data
+      with:
+        url: tools.url
+        extract: tools.extract
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-whitelisted-ips
+      description: List all IP addresses whitelisted in SOAX proxy package slots
+      hints:
+        readOnly: true
+        openWorld: false
+      call: soax-proxy-mgmt.list-whitelisted-ips
+      with:
+        package_key: '{{SOAX_PACKAGE_KEY}}'
+      outputParameters:
+      - type: object
+        mapping: $.slots
+    - name: list-proxy-cities
+      description: List all cities available for SOAX geo-targeted proxy selection
+      hints:
+        readOnly: true
+        openWorld: false
+      call: soax-proxy-mgmt.list-cities
+      with:
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.cities
+    - name: list-proxy-regions
+      description: List all regions/states available for SOAX geo-targeted proxy selection
+      hints:
+        readOnly: true
+        openWorld: false
+      call: soax-proxy-mgmt.list-regions
+      with:
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.regions
+    - name: list-mobile-carriers
+      description: List mobile carriers available for SOAX mobile proxy targeting
+      hints:
+        readOnly: true
+        openWorld: false
+      call: soax-proxy-mgmt.list-carriers
+      with:
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.carriers
+    - name: list-wifi-isps
+      description: List WiFi ISPs available for SOAX residential proxy targeting
+      hints:
+        readOnly: true
+        openWorld: false
+      call: soax-proxy-mgmt.list-wifi-isps
+      with:
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.isps
