@@ -81,6 +81,13 @@ common:
   - type: Examples
     url: examples/soax-fetch-content-example.json
 
+  - type: Integrations
+    url: https://soax.com/integrations
+integrations:
+  - name: Proxy checker
+  - name: IP checker
+  - name: cURL converter
+  - name: Browser fingerprint test
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
