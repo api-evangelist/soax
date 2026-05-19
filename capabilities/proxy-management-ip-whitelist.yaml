@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SOAX Proxy Management API — IP Whitelist
+  description: 'SOAX Proxy Management API — IP Whitelist. 3 operations. Lead operation: Detach Whitelisted IP. Self-contained
+    Naftiko capability covering one Soax business surface.'
+  tags:
+  - Soax
+  - IP Whitelist
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SOAX_API_KEY: SOAX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: proxy-management-ip-whitelist
+    baseUri: https://partner.api.soax.com
+    description: SOAX Proxy Management API — IP Whitelist business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-account-package-package_key-detach-ip
+      path: /v1/account/package/{package_key}/detach-ip
+      operations:
+      - name: detachwhitelistedip
+        method: POST
+        description: Detach Whitelisted IP
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          description: Your proxy package key
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-account-package-package_key-ip-list
+      path: /v1/account/package/{package_key}/ip-list
+      operations:
+      - name: listwhitelistedips
+        method: GET
+        description: List Whitelisted IPs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          description: Your proxy package key from the SOAX dashboard
+          required: true
+    - name: v1-account-package-package_key-update-ip
+      path: /v1/account/package/{package_key}/update-ip
+      operations:
+      - name: updatewhitelistedip
+        method: POST
+        description: Update Whitelisted IP
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_key
+          in: path
+          type: string
+          description: Your proxy package key
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.SOAX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: proxy-management-ip-whitelist-rest
+    port: 8080
+    description: REST adapter for SOAX Proxy Management API — IP Whitelist. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/account/package/{package-key}/detach-ip
+      name: v1-account-package-package-key-detach-ip
+      description: REST surface for v1-account-package-package_key-detach-ip.
+      operations:
+      - method: POST
+        name: detachwhitelistedip
+        description: Detach Whitelisted IP
+        call: proxy-management-ip-whitelist.detachwhitelistedip
+        with:
+          package_key: rest.package_key
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/account/package/{package-key}/ip-list
+      name: v1-account-package-package-key-ip-list
+      description: REST surface for v1-account-package-package_key-ip-list.
+      operations:
+      - method: GET
+        name: listwhitelistedips
+        description: List Whitelisted IPs
+        call: proxy-management-ip-whitelist.listwhitelistedips
+        with:
+          package_key: rest.package_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/account/package/{package-key}/update-ip
+      name: v1-account-package-package-key-update-ip
+      description: REST surface for v1-account-package-package_key-update-ip.
+      operations:
+      - method: POST
+        name: updatewhitelistedip
+        description: Update Whitelisted IP
+        call: proxy-management-ip-whitelist.updatewhitelistedip
+        with:
+          package_key: rest.package_key
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: proxy-management-ip-whitelist-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SOAX Proxy Management API — IP Whitelist. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: detach-whitelisted-ip
+      description: Detach Whitelisted IP
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: proxy-management-ip-whitelist.detachwhitelistedip
+      with:
+        package_key: tools.package_key
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-whitelisted-ips
+      description: List Whitelisted IPs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: proxy-management-ip-whitelist.listwhitelistedips
+      with:
+        package_key: tools.package_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-whitelisted-ip
+      description: Update Whitelisted IP
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: proxy-management-ip-whitelist.updatewhitelistedip
+      with:
+        package_key: tools.package_key
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

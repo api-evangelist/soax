@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: SOAX Web Data API — SERP Data
+  description: 'SOAX Web Data API — SERP Data. 1 operations. Lead operation: Fetch SERP Data. Self-contained Naftiko capability
+    covering one Soax business surface.'
+  tags:
+  - Soax
+  - SERP Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SOAX_API_KEY: SOAX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: web-data-serp-data
+    baseUri: https://scraping.soax.com
+    description: SOAX Web Data API — SERP Data business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-webdata-serp
+      path: /v2/webdata/serp
+      operations:
+      - name: fetchserpdata
+        method: POST
+        description: Fetch SERP Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-SOAX-API-Secret
+      value: '{{env.SOAX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: web-data-serp-data-rest
+    port: 8080
+    description: REST adapter for SOAX Web Data API — SERP Data. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/webdata/serp
+      name: v2-webdata-serp
+      description: REST surface for v2-webdata-serp.
+      operations:
+      - method: POST
+        name: fetchserpdata
+        description: Fetch SERP Data
+        call: web-data-serp-data.fetchserpdata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: web-data-serp-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for SOAX Web Data API — SERP Data. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: fetch-serp-data
+      description: Fetch SERP Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: web-data-serp-data.fetchserpdata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
