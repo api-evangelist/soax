@@ -1,77 +1,92 @@
-# SOAX
+# SOAX (soax)
 
-SOAX provides enterprise-grade proxy infrastructure and web data extraction APIs for developers and data teams. With 155M+ residential IPs, 33M+ mobile IPs, and 300K+ datacenter IPs across 195+ countries, SOAX enables web scraping, CAPTCHA bypass, geo-targeted data collection, and anti-bot circumvention at scale.
+SOAX provides enterprise-grade proxy infrastructure and web data extraction APIs for developers and data teams. With 155M+ residential IPs, 33M+ mobile IPs, and 300K+ datacenter IPs across 195+ countries, SOAX enables web scraping, CAPTCHA bypass, geo-targeted data collection, and anti-bot circumvention at scale. The Web Data API handles JavaScript rendering, session management, and headless browser automation automatically.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/soax/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/soax/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Proxy
+- Web Scraping
+- Residential Proxies
+- Mobile Proxies
+- Datacenter Proxies
+- Data Extraction
+- Anti-Bot Bypass
+
+## Timestamps
+
+- **Created:** 2025-02-21
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### SOAX Web Data API
 
-Extract fully rendered web content from any public website with automatic CAPTCHA bypass, JavaScript rendering, and anti-bot protection.
+The SOAX Web Data API extracts fully rendered HTML, screenshots, XHR responses, and structured data from any public website. It handles JavaScript rendering, CAPTCHA solving, fingerprinting, headless browsers, and anti-bot bypass automatically.
 
-- **Documentation:** https://docs.soax.com/
-- **Getting Started:** https://helpcenter.soax.com/en/articles/11297318-getting-started-with-soax-web-data-api
-- **OpenAPI Spec:** [openapi/soax-web-data-api-openapi.yml](openapi/soax-web-data-api-openapi.yml)
+- **Human URL:** [https://soax.com/web-data-api](https://soax.com/web-data-api)
 
-**Endpoints:**
-- `POST /v2/webdata/fetch-content` — Fetch rendered HTML, screenshots, XHR, or Markdown
-- `POST /v2/webdata/serp` — Extract search engine result pages
-- `POST /v2/webdata/ecommerce` — Extract product pricing and inventory data
+#### Tags
+
+- Web Scraping
+- Data Extraction
+- Anti-Bot Bypass
+- JavaScript Rendering
+
+#### Properties
+
+- [Documentation](https://docs.soax.com/)
+- [Getting Started](https://helpcenter.soax.com/en/articles/11297318-getting-started-with-soax-web-data-api)
+- [OpenAPI](openapi/soax-web-data-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/soax-web-data-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/soax-web-data-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [J S O N  Schema](json-schema/soax-fetch-request-schema.json)
+- [J S O N  Structure](json-structure/soax-fetch-request-structure.json)
 
 ### SOAX Proxy Management API
 
-Programmatically manage proxy packages, IP whitelists, and geo-targeting options.
+The SOAX Proxy Management API enables programmatic control of proxy packages including IP whitelisting, endpoint generation, and proxy configuration for residential, mobile, and datacenter proxy pools.
 
-- **Documentation:** https://helpcenter.soax.com/en/collections/3470979-api
-- **OpenAPI Spec:** [openapi/soax-proxy-management-api-openapi.yml](openapi/soax-proxy-management-api-openapi.yml)
+- **Human URL:** [https://soax.com/proxies](https://soax.com/proxies)
 
-**Endpoints:**
-- `GET /v1/account/package/{key}/ip-list` — List whitelisted IPs
-- `POST /v1/account/package/{key}/update-ip` — Whitelist an IP address
-- `POST /v1/account/package/{key}/detach-ip` — Remove a whitelisted IP
-- `GET /v1/geo/cities` — List available cities for geo-targeting
-- `GET /v1/geo/regions` — List available regions/states
-- `GET /v1/geo/carriers` — List available mobile carriers
-- `GET /v1/geo/isps` — List available WiFi ISPs
+#### Tags
 
-## Artifacts
+- Proxy Management
+- Whitelist
+- IP Rotation
+- Residential Proxies
 
-| Type | File |
-|------|------|
-| OpenAPI (Web Data API) | [openapi/soax-web-data-api-openapi.yml](openapi/soax-web-data-api-openapi.yml) |
-| OpenAPI (Proxy Management) | [openapi/soax-proxy-management-api-openapi.yml](openapi/soax-proxy-management-api-openapi.yml) |
-| JSON Schema | [json-schema/soax-fetch-request-schema.json](json-schema/soax-fetch-request-schema.json) |
-| JSON Structure | [json-structure/soax-fetch-request-structure.json](json-structure/soax-fetch-request-structure.json) |
-| JSON-LD Context | [json-ld/soax-context.jsonld](json-ld/soax-context.jsonld) |
-| Spectral Rules | [rules/soax-rules.yml](rules/soax-rules.yml) |
-| Vocabulary | [vocabulary/soax-vocabulary.yml](vocabulary/soax-vocabulary.yml) |
-| Example: Fetch Content | [examples/soax-fetch-content-example.json](examples/soax-fetch-content-example.json) |
+#### Properties
 
-## Capabilities
+- [Documentation](https://helpcenter.soax.com/en/collections/3470979-api)
+- [OpenAPI](openapi/soax-proxy-management-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/soax-proxy-management-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/soax-proxy-management-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### Workflows
+## Common Properties
 
-| Capability | File | Description |
-|-----------|------|-------------|
-| Data Collection | [capabilities/data-collection.yaml](capabilities/data-collection.yaml) | Unified web scraping, SERP extraction, e-commerce data, and proxy management (8 MCP tools) |
-
-### Shared Definitions
-
-| API | File |
-|-----|------|
-| SOAX Web Data API | [capabilities/shared/soax-web-data-api.yaml](capabilities/shared/soax-web-data-api.yaml) |
-| SOAX Proxy Management API | [capabilities/shared/soax-proxy-management-api.yaml](capabilities/shared/soax-proxy-management-api.yaml) |
-
-## Links
-
-- **Website:** https://soax.com/
-- **Documentation:** https://docs.soax.com/
-- **Help Center:** https://helpcenter.soax.com/
-- **Pricing:** https://soax.com/pricing
-- **Sign Up:** https://soax.com/get-started
-- **Blog:** https://soax.com/blog/
+- [LinkedIn](https://www.linkedin.com/company/soax-network)
+- [Website](https://soax.com/)
+- [Documentation](https://docs.soax.com/)
+- [Help  Center](https://helpcenter.soax.com/)
+- [Pricing](https://soax.com/pricing)
+- [Sign Up](https://soax.com/get-started)
+- [Blog](https://soax.com/blog/)
+- [Spectral  Rules](rules/soax-rules.yml)
+- [Capabilities](capabilities/data-collection.yaml)
+- [Vocabulary](vocabulary/soax-vocabulary.yml)
+- [J S O N- L D  Context](json-ld/soax-context.jsonld)
+- [Examples](examples/soax-fetch-content-example.json)
+- [Integrations](https://soax.com/integrations)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

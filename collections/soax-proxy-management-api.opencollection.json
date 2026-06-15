@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SOAX Proxy Management API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IP Whitelist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Whitelisted IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/ip-list",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key from the SOAX dashboard"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of whitelisted IP addresses for a proxy package slot."
+        },
+        {
+          "info": {
+            "name": "Update Whitelisted IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/update-ip",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update an IP address in a proxy package whitelist slot."
+        },
+        {
+          "info": {
+            "name": "Detach Whitelisted IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/detach-ip",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an IP address from a proxy package whitelist slot by slot number or IP address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geo Targeting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/geo/cities",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter cities by country code"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of available cities for proxy geo-targeting."
+        },
+        {
+          "info": {
+            "name": "List Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/geo/regions",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter regions by country code"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of available regions/states for proxy geo-targeting."
+        },
+        {
+          "info": {
+            "name": "List Mobile Carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/geo/carriers",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter carriers by country code"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of available mobile carriers for mobile proxy targeting."
+        },
+        {
+          "info": {
+            "name": "List WiFi ISPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/geo/isps",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter ISPs by country code"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of available WiFi ISPs for residential proxy targeting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

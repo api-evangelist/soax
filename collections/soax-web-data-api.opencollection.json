@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SOAX Web Data API",
+    "version": "2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-SOAX-API-Secret",
+      "value": "{{X-SOAX-API-Secret}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Web Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Web Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://scraping.soax.com/v2/webdata/fetch-content",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch fully rendered content from any public web page. Handles JavaScript execution, CAPTCHA bypass, anti-bot circumvention, and headless browser management automatically. Returns HTML body, screenshots, XHR calls, or Markdown depending on response configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SERP Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch SERP Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://scraping.soax.com/v2/webdata/serp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ecommerce Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Ecommerce Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://scraping.soax.com/v2/webdata/ecommerce",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract real-time pricing, product details, stock levels, and reviews from e-commerce sites including Amazon, eBay, and major retailer websites."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
