@@ -41,9 +41,9 @@ apis:
         url: https://helpcenter.soax.com/en/articles/11297318-getting-started-with-soax-web-data-api
       - type: OpenAPI
         url: openapi/soax-web-data-api-openapi.yml
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/soax-fetch-request-schema.json
-      - type: JSON Structure
+      - type: JSONStructure
         url: json-structure/soax-fetch-request-structure.json
   - aid: soax:soax-proxy-management-api
     name: SOAX Proxy Management API
@@ -72,17 +72,17 @@ common:
     url: https://helpcenter.soax.com/
   - type: Pricing
     url: https://soax.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://soax.com/get-started
   - type: Blog
     url: https://soax.com/blog/
-  - type: Spectral Rules
+  - type: SpectralRules
     url: rules/soax-rules.yml
   - type: Capabilities
     url: capabilities/data-collection.yaml
   - type: Vocabulary
     url: vocabulary/soax-vocabulary.yml
-  - type: JSON-LD Context
+  - type: JSONLDContext
     url: json-ld/soax-context.jsonld
   - type: Examples
     url: examples/soax-fetch-content-example.json
