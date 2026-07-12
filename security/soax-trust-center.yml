@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://soax.com/trust
+url: https://soax.com/trust
+certifications:
+- SOC 2
+- ISO 27001
+- GDPR
+evidence:
+- source: https://soax.com/trust
+  keywords:
+  - soc 2
+  - iso 27001
+  - gdpr

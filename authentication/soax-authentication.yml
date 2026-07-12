@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/soax-proxy-management-api-openapi.yml, openapi/soax-web-data-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: api-key
+  description: Your SOAX API key from the Profile tab in your dashboard
+  sources:
+  - openapi/soax-proxy-management-api-openapi.yml
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-SOAX-API-Secret
+  description: SOAX API key from your dashboard Scraper APIs section
+  sources:
+  - openapi/soax-web-data-api-openapi.yml

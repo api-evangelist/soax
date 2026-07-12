@@ -62,6 +62,12 @@ apis:
       - type: OpenAPI
         url: openapi/soax-proxy-management-api-openapi.yml
 common:
+  - type: TrustCenter
+    url: security/soax-trust-center.yml
+  - type: DomainSecurity
+    url: security/soax-domain-security.yml
+  - type: Authentication
+    url: authentication/soax-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/soax-network
   - type: Website
