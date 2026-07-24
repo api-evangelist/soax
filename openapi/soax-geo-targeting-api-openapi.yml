@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: SOAX Proxy Management Ecommerce Data Geo Targeting API
+  description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
+  version: '1'
+  contact:
+    name: SOAX Support
+    url: https://helpcenter.soax.com/
+  license:
+    name: Proprietary
+    url: https://soax.com/terms-of-service
+servers:
+- url: https://partner.api.soax.com
+  description: SOAX Partner API endpoint
+security:
+- APIKeyHeader: []
+tags:
+- name: Geo Targeting
+  description: Retrieve available cities, regions, carriers, and ISPs for proxy targeting
+paths:
+  /v1/geo/cities:
+    get:
+      operationId: listCities
+      summary: List Cities
+      description: Retrieve the list of available cities for proxy geo-targeting.
+      tags:
+      - Geo Targeting
+      parameters:
+      - name: country
+        in: query
+        required: false
+        description: Filter cities by country code
+        schema:
+          type: string
+          example: us
+      responses:
+        '200':
+          description: List of available cities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitiesResponse'
+        '401':
+          description: Invalid API key
+  /v1/geo/regions:
+    get:
+      operationId: listRegions
+      summary: List Regions
+      description: Retrieve the list of available regions/states for proxy geo-targeting.
+      tags:
+      - Geo Targeting
+      parameters:
+      - name: country
+        in: query
+        required: false
+        description: Filter regions by country code
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available regions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionsResponse'
+        '401':
+          description: Invalid API key
+  /v1/geo/carriers:
+    get:
+      operationId: listMobileCarriers
+      summary: List Mobile Carriers
+      description: Retrieve the list of available mobile carriers for mobile proxy targeting.
+      tags:
+      - Geo Targeting
+      parameters:
+      - name: country
+        in: query
+        required: false
+        description: Filter carriers by country code
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available mobile carriers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarriersResponse'
+        '401':
+          description: Invalid API key
+  /v1/geo/isps:
+    get:
+      operationId: listWifiIsps
+      summary: List WiFi ISPs
+      description: Retrieve the list of available WiFi ISPs for residential proxy targeting.
+      tags:
+      - Geo Targeting
+      parameters:
+      - name: country
+        in: query
+        required: false
+        description: Filter ISPs by country code
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of available WiFi ISPs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IspsResponse'
+        '401':
+          description: Invalid API key
+components:
+  schemas:
+    IspsResponse:
+      type: object
+      properties:
+        isps:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: ISP name
+              country:
+                type: string
+                description: Country code
+              proxy_count:
+                type: integer
+                description: Number of residential proxies available for this ISP
+    RegionsResponse:
+      type: object
+      properties:
+        regions:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Region/state name
+              country:
+                type: string
+                description: Country code
+              proxy_count:
+                type: integer
+                description: Number of available proxies in this region
+    CarriersResponse:
+      type: object
+      properties:
+        carriers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Mobile carrier name
+              country:
+                type: string
+                description: Country code
+              proxy_count:
+                type: integer
+                description: Number of available mobile proxies for this carrier
+    CitiesResponse:
+      type: object
+      properties:
+        cities:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: City name
+              country:
+                type: string
+                description: Country code
+              region:
+                type: string
+                description: Region/state
+              proxy_count:
+                type: integer
+                description: Number of available proxies in this city
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your SOAX API key from the Profile tab in your dashboard

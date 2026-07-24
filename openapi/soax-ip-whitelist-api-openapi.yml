@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: SOAX Proxy Management Ecommerce Data IP Whitelist API
+  description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
+  version: '1'
+  contact:
+    name: SOAX Support
+    url: https://helpcenter.soax.com/
+  license:
+    name: Proprietary
+    url: https://soax.com/terms-of-service
+servers:
+- url: https://partner.api.soax.com
+  description: SOAX Partner API endpoint
+security:
+- APIKeyHeader: []
+tags:
+- name: IP Whitelist
+  description: Manage whitelisted IP addresses for proxy authentication
+paths:
+  /v1/account/package/{package_key}/ip-list:
+    get:
+      operationId: listWhitelistedIps
+      summary: List Whitelisted IPs
+      description: Retrieve the list of whitelisted IP addresses for a proxy package slot.
+      tags:
+      - IP Whitelist
+      parameters:
+      - name: package_key
+        in: path
+        required: true
+        description: Your proxy package key from the SOAX dashboard
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of whitelisted IP slots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpListResponse'
+        '401':
+          description: Invalid API key
+        '404':
+          description: Package not found
+  /v1/account/package/{package_key}/update-ip:
+    post:
+      operationId: updateWhitelistedIp
+      summary: Update Whitelisted IP
+      description: Add or update an IP address in a proxy package whitelist slot.
+      tags:
+      - IP Whitelist
+      parameters:
+      - name: package_key
+        in: path
+        required: true
+        description: Your proxy package key
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIpRequest'
+            example:
+            - ip: 203.0.113.10
+              slot: 1
+              comment: Office IP
+      responses:
+        '200':
+          description: IP address updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpOperationResponse'
+        '400':
+          description: Invalid IP address or slot number
+        '401':
+          description: Invalid API key
+  /v1/account/package/{package_key}/detach-ip:
+    post:
+      operationId: detachWhitelistedIp
+      summary: Detach Whitelisted IP
+      description: Remove an IP address from a proxy package whitelist slot by slot number or IP address.
+      tags:
+      - IP Whitelist
+      parameters:
+      - name: package_key
+        in: path
+        required: true
+        description: Your proxy package key
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetachIpRequest'
+      responses:
+        '200':
+          description: IP address removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpOperationResponse'
+        '400':
+          description: Invalid slot or IP not found
+        '401':
+          description: Invalid API key
+components:
+  schemas:
+    IpSlot:
+      type: object
+      properties:
+        slot:
+          type: integer
+          description: Slot number
+        ip:
+          type: string
+          description: Whitelisted IP address
+        comment:
+          type: string
+          description: Label/name for this slot
+    DetachIpRequest:
+      type: array
+      description: Array of slots or IPs to detach
+      items:
+        type: object
+        properties:
+          slot:
+            type: integer
+            description: Slot number to clear
+          ip:
+            type: string
+            description: IP address to detach
+    UpdateIpRequest:
+      type: array
+      description: Array of IP slot updates
+      items:
+        type: object
+        required:
+        - ip
+        - slot
+        properties:
+          ip:
+            type: string
+            description: IP address to whitelist
+            example: 203.0.113.10
+          slot:
+            type: integer
+            description: Slot number to assign the IP to
+            example: 1
+          comment:
+            type: string
+            description: Label for this IP slot
+            example: Office IP
+    IpOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+        message:
+          type: string
+          description: Human-readable result message
+        slots:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpSlot'
+    IpListResponse:
+      type: object
+      properties:
+        slots:
+          type: array
+          description: List of IP whitelist slots
+          items:
+            $ref: '#/components/schemas/IpSlot'
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your SOAX API key from the Profile tab in your dashboard

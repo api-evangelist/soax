@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: SOAX Proxy Management Ecommerce Data SERP Data API
+  description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
+  version: '1'
+  contact:
+    name: SOAX Support
+    url: https://helpcenter.soax.com/
+  license:
+    name: Proprietary
+    url: https://soax.com/terms-of-service
+servers:
+- url: https://partner.api.soax.com
+  description: SOAX Partner API endpoint
+security:
+- APIKeyHeader: []
+tags:
+- name: SERP Data
+  description: Search engine result page extraction
+paths:
+  /v2/webdata/serp:
+    post:
+      operationId: fetchSerpData
+      summary: Fetch SERP Data
+      description: Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets.
+      tags:
+      - SERP Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SerpRequest'
+      responses:
+        '200':
+          description: SERP data extracted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SerpResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    SerpRequest:
+      type: object
+      required:
+      - query
+      - search_engine
+      properties:
+        query:
+          type: string
+          description: Search query string
+          example: best proxy providers 2026
+        search_engine:
+          type: string
+          enum:
+          - google
+          - bing
+          - yahoo
+          - yandex
+          - baidu
+          description: Target search engine
+          example: google
+        country:
+          type: string
+          description: Country for localized search results
+          example: us
+        language:
+          type: string
+          description: Language code for search results
+          example: en
+        page:
+          type: integer
+          default: 1
+          description: Result page number
+        results_per_page:
+          type: integer
+          default: 10
+          description: Number of results per page
+    SerpResponse:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query
+        total_results:
+          type: integer
+          description: Total number of results found
+        organic_results:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: integer
+              title:
+                type: string
+              url:
+                type: string
+              snippet:
+                type: string
+        featured_snippet:
+          type: object
+          properties:
+            title:
+              type: string
+            content:
+              type: string
+            url:
+              type: string
+        ads:
+          type: array
+          items:
+            type: object
+            properties:
+              position:
+                type: integer
+              title:
+                type: string
+              url:
+                type: string
+              description:
+                type: string
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your SOAX API key from the Profile tab in your dashboard

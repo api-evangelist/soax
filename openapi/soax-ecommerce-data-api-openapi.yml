@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: SOAX Proxy Management Ecommerce Data API
+  description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
+  version: '1'
+  contact:
+    name: SOAX Support
+    url: https://helpcenter.soax.com/
+  license:
+    name: Proprietary
+    url: https://soax.com/terms-of-service
+servers:
+- url: https://partner.api.soax.com
+  description: SOAX Partner API endpoint
+security:
+- APIKeyHeader: []
+tags:
+- name: Ecommerce Data
+  description: E-commerce pricing and inventory data
+paths:
+  /v2/webdata/ecommerce:
+    post:
+      operationId: fetchEcommerceData
+      summary: Fetch Ecommerce Data
+      description: Extract real-time pricing, product details, stock levels, and reviews from e-commerce sites including Amazon, eBay, and major retailer websites.
+      tags:
+      - Ecommerce Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EcommerceRequest'
+      responses:
+        '200':
+          description: Ecommerce data extracted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EcommerceResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    EcommerceRequest:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the product page to extract data from
+        extract:
+          type: array
+          description: Data fields to extract
+          items:
+            type: string
+            enum:
+            - price
+            - title
+            - description
+            - images
+            - rating
+            - reviews
+            - stock
+            - sku
+            - seller
+        country:
+          type: string
+          description: Country for localized pricing
+    EcommerceResponse:
+      type: object
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        price:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+            original_price:
+              type: number
+            discount_percentage:
+              type: number
+        stock:
+          type: string
+          enum:
+          - in_stock
+          - out_of_stock
+          - limited
+        rating:
+          type: number
+          minimum: 0
+          maximum: 5
+        reviews_count:
+          type: integer
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your SOAX API key from the Profile tab in your dashboard
