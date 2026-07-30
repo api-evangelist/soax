@@ -6,9 +6,22 @@ description: >-
   CAPTCHA bypass, geo-targeted data collection, and anti-bot circumvention at scale. The Web Data API handles JavaScript
   rendering, session management, and headless browser automation automatically.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/soax.png
 tags:
   - Proxy
   - Web Scraping
@@ -22,45 +35,73 @@ created: '2025-02-21'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: soax:soax-web-data-api
-    name: SOAX Web Data API
-    description: >-
-      The SOAX Web Data API extracts fully rendered HTML, screenshots, XHR responses, and structured data from any
-      public website. It handles JavaScript rendering, CAPTCHA solving, fingerprinting, headless browsers, and anti-bot
-      bypass automatically.
-    humanURL: https://soax.com/web-data-api
-    tags:
-      - Web Scraping
-      - Data Extraction
-      - Anti-Bot Bypass
-      - JavaScript Rendering
-    properties:
-      - type: Documentation
-        url: https://docs.soax.com/
-      - type: GettingStarted
-        url: https://helpcenter.soax.com/en/articles/11297318-getting-started-with-soax-web-data-api
-      - type: OpenAPI
-        url: openapi/soax-web-data-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/soax-fetch-request-schema.json
-      - type: JSONStructure
-        url: json-structure/soax-fetch-request-structure.json
-  - aid: soax:soax-proxy-management-api
-    name: SOAX Proxy Management API
-    description: >-
-      The SOAX Proxy Management API enables programmatic control of proxy packages including IP whitelisting, endpoint
-      generation, and proxy configuration for residential, mobile, and datacenter proxy pools.
-    humanURL: https://soax.com/proxies
-    tags:
-      - Proxy Management
-      - Whitelist
-      - IP Rotation
-      - Residential Proxies
-    properties:
-      - type: Documentation
-        url: https://helpcenter.soax.com/en/collections/3470979-api
-      - type: OpenAPI
-        url: openapi/soax-proxy-management-api-openapi.yml
+- aid: soax:soax-web-data-api
+  name: SOAX Web Data API
+  description: >-
+    The SOAX Web Data API extracts fully rendered HTML, screenshots, XHR responses, and structured data
+    from any public website. It handles JavaScript rendering, CAPTCHA solving, fingerprinting, headless
+    browsers, and anti-bot bypass automatically.
+  humanURL: https://soax.com/web-data-api
+  tags:
+  - Web Scraping
+  - Data Extraction
+  - Anti-Bot Bypass
+  - JavaScript Rendering
+  properties:
+  - type: Documentation
+    url: https://docs.soax.com/
+  - type: GettingStarted
+    url: https://helpcenter.soax.com/en/articles/11297318-getting-started-with-soax-web-data-api
+  - type: OpenAPI
+    url: openapi/soax-web-data-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/soax-fetch-request-schema.json
+  - type: JSONStructure
+    url: json-structure/soax-fetch-request-structure.json
+- aid: soax:soax-ecommerce-data-api
+  name: SOAX Ecommerce Data API
+  description: E-commerce pricing and inventory data
+  humanURL: https://soax.com/web-data-api
+  tags:
+  - Ecommerce Data
+  properties:
+  - type: OpenAPI
+    url: openapi/soax-ecommerce-data-api-openapi.yml
+  - type: Documentation
+    url: https://helpcenter.soax.com/en/collections/3470979-api
+- aid: soax:soax-geo-targeting-api
+  name: SOAX Geo Targeting API
+  description: Retrieve available cities, regions, carriers, and ISPs for proxy targeting
+  humanURL: https://soax.com/web-data-api
+  tags:
+  - Geo Targeting
+  properties:
+  - type: OpenAPI
+    url: openapi/soax-geo-targeting-api-openapi.yml
+  - type: Documentation
+    url: https://helpcenter.soax.com/en/collections/3470979-api
+- aid: soax:soax-ip-whitelist-api
+  name: SOAX IP Whitelist API
+  description: Manage whitelisted IP addresses for proxy authentication
+  humanURL: https://soax.com/web-data-api
+  tags:
+  - IP Whitelist
+  properties:
+  - type: OpenAPI
+    url: openapi/soax-ip-whitelist-api-openapi.yml
+  - type: Documentation
+    url: https://helpcenter.soax.com/en/collections/3470979-api
+- aid: soax:soax-serp-data-api
+  name: SOAX SERP Data API
+  description: Search engine result page extraction
+  humanURL: https://soax.com/web-data-api
+  tags:
+  - SERP Data
+  properties:
+  - type: OpenAPI
+    url: openapi/soax-serp-data-api-openapi.yml
+  - type: Documentation
+    url: https://helpcenter.soax.com/en/collections/3470979-api
 common:
   - type: AgenticAccess
     url: agentic-access/soax-agentic-access.yml
