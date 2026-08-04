@@ -1,0 +1,22 @@
+{
+  "provider": "soax",
+  "sources": [
+    "soax-ecommerce-data-api-openapi.yml",
+    "soax-geo-targeting-api-openapi.yml",
+    "soax-ip-whitelist-api-openapi.yml",
+    "soax-serp-data-api-openapi.yml",
+    "soax-web-data-api-openapi.yml"
+  ],
+  "outputs": [
+    "soax-ecommerce-data-api-openapi.yml",
+    "soax-geo-targeting-api-openapi.yml",
+    "soax-ip-whitelist-api-openapi.yml",
+    "soax-serp-data-api-openapi.yml",
+    "soax-web-data-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
