@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "eda0d073-1813-449f-bacd-e8094902cb65",
+      "name": "Ecommerce Data",
+      "description": {
+        "content": "E-commerce pricing and inventory data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17478b8b-f246-46f2-b5eb-b01d6d9b8888",
+          "name": "Fetch Ecommerce Data",
+          "request": {
+            "name": "Fetch Ecommerce Data",
+            "description": {
+              "content": "Extract real-time pricing, product details, stock levels, and reviews from e-commerce sites including Amazon, eBay, and major retailer websites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "webdata",
+                "ecommerce"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"extract\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "180309d3-88a1-45fe-a68d-a27b890a48b4",
+              "name": "Ecommerce data extracted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "ecommerce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"extract\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\",\n  \"title\": \"string\",\n  \"price\": {\n    \"amount\": 6748.74827475868,\n    \"currency\": \"string\",\n    \"original_price\": 4884.922710339752,\n    \"discount_percentage\": 1807.2391370625396\n  },\n  \"stock\": \"in_stock\",\n  \"rating\": 1.1604898853950718,\n  \"reviews_count\": 2583,\n  \"images\": [\n    \"http://S.omMYSxa3SkVgLZIyYcLTAZDRBCIr6KOWU\",\n    \"https://ssgqoqSOWBzDsNLCRDuWgfiMVXZsU.yrhEG5zz-wTtrOyxyv3Scne93AlTFf0LS4rsPUqaZxeo6wy8NSkjl\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "687835c5-4e5f-4a66-9003-67a826a2c6ab",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "ecommerce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"extract\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e588cff-91d8-491f-a128-05532feebdb4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "ecommerce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"extract\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"country\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partner.api.soax.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "524f75ca-5ce4-4c9e-ac5f-80ff94d01694",
+    "name": "SOAX Proxy Management Ecommerce Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+      "type": "text/plain"
+    }
+  }
+}

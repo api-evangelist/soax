@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "SOAX Proxy Management Ecommerce Data Web Data API",
+    "name": "SOAX Proxy Management Ecommerce Data API",
     "version": "1"
   },
   "request": {
@@ -15,24 +15,24 @@
   "items": [
     {
       "info": {
-        "name": "Web Data",
+        "name": "Ecommerce Data",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Fetch Web Content",
+            "name": "Fetch Ecommerce Data",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://partner.api.soax.com/v2/webdata/fetch-content",
+            "url": "https://partner.api.soax.com/v2/webdata/ecommerce",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Fetch fully rendered content from any public web page. Handles JavaScript execution, CAPTCHA bypass, anti-bot circumvention, and headless browser management automatically. Returns HTML body, screenshots, XHR calls, or Markdown depending on response configuration."
+          "docs": "Extract real-time pricing, product details, stock levels, and reviews from e-commerce sites including Amazon, eBay, and major retailer websites."
         }
       ]
     }

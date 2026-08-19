@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SOAX Proxy Management Ecommerce Data IP Whitelist API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api-key",
+      "value": "{{api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IP Whitelist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Whitelisted IPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/ip-list",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key from the SOAX dashboard"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of whitelisted IP addresses for a proxy package slot."
+        },
+        {
+          "info": {
+            "name": "Update Whitelisted IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/update-ip",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update an IP address in a proxy package whitelist slot."
+        },
+        {
+          "info": {
+            "name": "Detach Whitelisted IP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://partner.api.soax.com/v1/account/package/:package_key/detach-ip",
+            "params": [
+              {
+                "name": "package_key",
+                "value": "",
+                "type": "path",
+                "description": "Your proxy package key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an IP address from a proxy package whitelist slot by slot number or IP address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "d6a52df5-fd8d-4ebf-8f20-a3c46fb0aed7",
+      "name": "SERP Data",
+      "description": {
+        "content": "Search engine result page extraction",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ccda8766-bf23-49dc-b565-a71877f9d4c4",
+          "name": "Fetch SERP Data",
+          "request": {
+            "name": "Fetch SERP Data",
+            "description": {
+              "content": "Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "webdata",
+                "serp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"<string>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a589642-48e5-47ec-9551-8544f06975bf",
+              "name": "SERP data extracted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "serp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"query\": \"string\",\n  \"total_results\": 2747,\n  \"organic_results\": [\n    {\n      \"position\": 4569,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\"\n    },\n    {\n      \"position\": 8496,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\"\n    }\n  ],\n  \"featured_snippet\": {\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"url\": \"string\"\n  },\n  \"ads\": [\n    {\n      \"position\": 8487,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"position\": 6986,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f7eafc0-58bb-4394-95e8-ec47b15a5ce2",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "serp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd7d8e84-1575-4626-887d-495840c0c592",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "webdata",
+                    "serp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://partner.api.soax.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dba90e3d-3a15-442c-9dc9-e68793a88c0f",
+    "name": "SOAX Proxy Management Ecommerce Data SERP Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+      "type": "text/plain"
+    }
+  }
+}
