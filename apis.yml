@@ -33,7 +33,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/soax/refs/heads/main/apis.yml
 created: '2025-02-21'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: soax:soax-web-data-api
   name: SOAX Web Data API
