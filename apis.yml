@@ -75,7 +75,7 @@ apis:
   description: E-commerce pricing and inventory data
   humanURL: https://soax.com/web-data-api
   tags:
-  - E-Commerce Data
+  - Ecommerce Data
   tags_raw:
   - Ecommerce Data
   properties:
@@ -88,7 +88,7 @@ apis:
   description: Retrieve available cities, regions, carriers, and ISPs for proxy targeting
   humanURL: https://soax.com/web-data-api
   tags:
-  - Geo-Targeting
+  - Geo Targeting
   tags_raw:
   - Geo Targeting
   properties:
