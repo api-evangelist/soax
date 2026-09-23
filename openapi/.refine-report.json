@@ -1,22 +1,32 @@
 {
   "provider": "soax",
   "sources": [
+    "_original/soax-proxy-management-api-openapi.yml",
     "soax-ecommerce-data-api-openapi.yml",
-    "soax-geo-targeting-api-openapi.yml",
-    "soax-ip-whitelist-api-openapi.yml",
     "soax-serp-data-api-openapi.yml",
     "soax-web-data-api-openapi.yml"
   ],
   "outputs": [
-    "soax-ecommerce-data-api-openapi.yml",
     "soax-geo-targeting-api-openapi.yml",
     "soax-ip-whitelist-api-openapi.yml",
+    "soax-ecommerce-data-api-openapi.yml",
     "soax-serp-data-api-openapi.yml",
     "soax-web-data-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [],
-  "skipped": []
+  "warnings": [
+    "soax-ecommerce-data-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/webdata/ecommerce post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "soax-serp-data-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/webdata/serp post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "soax-web-data-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /v2/webdata/fetch-content post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "soax-proxy-management-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "soax-geo-targeting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "soax-ip-whitelist-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SOAX Proxy Management Ecommerce Data Web Data API
   description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
@@ -62,57 +62,18 @@ paths:
           description: Internal server error or target site failure
 components:
   schemas:
-    FetchContentResponse:
+    ErrorResponse:
       type: object
       properties:
-        status:
-          type: integer
-          description: HTTP status code of the fetched page
-          example: 200
-        url:
+        error:
           type: string
-          format: uri
-          description: Final URL after redirects
-        body:
+          description: Error code
+        message:
           type: string
-          description: Fully rendered HTML content of the page
-        screenshot:
+          description: Human-readable error description
+        request_id:
           type: string
-          format: byte
-          description: Base64-encoded PNG screenshot (if requested)
-        xhr:
-          type: array
-          description: XHR/fetch calls captured during page rendering
-          items:
-            type: object
-            properties:
-              url:
-                type: string
-                description: URL of the XHR request
-              method:
-                type: string
-                description: HTTP method
-              status:
-                type: integer
-                description: Response status code
-              body:
-                type: string
-                description: Response body
-        markdown:
-          type: string
-          description: Markdown representation of the page content (if requested)
-        metadata:
-          type: object
-          properties:
-            title:
-              type: string
-              description: Page title
-            description:
-              type: string
-              description: Meta description
-            proxy_used:
-              type: string
-              description: The proxy IP used for the request
+          description: Request identifier for support
     FetchContentRequest:
       type: object
       required:
@@ -179,18 +140,57 @@ components:
             session_id:
               type: string
               description: Session identifier for sticky sessions
-    ErrorResponse:
+    FetchContentResponse:
       type: object
       properties:
-        error:
+        status:
+          type: integer
+          description: HTTP status code of the fetched page
+          example: 200
+        url:
           type: string
-          description: Error code
-        message:
+          format: uri
+          description: Final URL after redirects
+        body:
           type: string
-          description: Human-readable error description
-        request_id:
+          description: Fully rendered HTML content of the page
+        screenshot:
           type: string
-          description: Request identifier for support
+          format: byte
+          description: Base64-encoded PNG screenshot (if requested)
+        xhr:
+          type: array
+          description: XHR/fetch calls captured during page rendering
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                description: URL of the XHR request
+              method:
+                type: string
+                description: HTTP method
+              status:
+                type: integer
+                description: Response status code
+              body:
+                type: string
+                description: Response body
+        markdown:
+          type: string
+          description: Markdown representation of the page content (if requested)
+        metadata:
+          type: object
+          properties:
+            title:
+              type: string
+              description: Page title
+            description:
+              type: string
+              description: Meta description
+            proxy_used:
+              type: string
+              description: The proxy IP used for the request
   securitySchemes:
     APIKeyHeader:
       type: apiKey

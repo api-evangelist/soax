@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SOAX Proxy Management Ecommerce Data API
   description: The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.
