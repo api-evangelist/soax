@@ -44,42 +44,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    SerpRequest:
-      type: object
-      required:
-      - query
-      - search_engine
-      properties:
-        query:
-          type: string
-          description: Search query string
-          example: best proxy providers 2026
-        search_engine:
-          type: string
-          enum:
-          - google
-          - bing
-          - yahoo
-          - yandex
-          - baidu
-          description: Target search engine
-          example: google
-        country:
-          type: string
-          description: Country for localized search results
-          example: us
-        language:
-          type: string
-          description: Language code for search results
-          example: en
-        page:
-          type: integer
-          default: 1
-          description: Result page number
-        results_per_page:
-          type: integer
-          default: 10
-          description: Number of results per page
     SerpResponse:
       type: object
       properties:
@@ -124,6 +88,42 @@ components:
                 type: string
               description:
                 type: string
+    SerpRequest:
+      type: object
+      required:
+      - query
+      - search_engine
+      properties:
+        query:
+          type: string
+          description: Search query string
+          example: best proxy providers 2026
+        search_engine:
+          type: string
+          enum:
+          - google
+          - bing
+          - yahoo
+          - yandex
+          - baidu
+          description: Target search engine
+          example: google
+        country:
+          type: string
+          description: Country for localized search results
+          example: us
+        language:
+          type: string
+          description: Language code for search results
+          example: en
+        page:
+          type: integer
+          default: 1
+          description: Result page number
+        results_per_page:
+          type: integer
+          default: 10
+          description: Number of results per page
   securitySchemes:
     APIKeyHeader:
       type: apiKey
