@@ -111,31 +111,18 @@ paths:
           description: Invalid API key
 components:
   schemas:
-    IpSlot:
-      type: object
-      properties:
-        slot:
-          type: integer
-          description: Slot number
-        ip:
-          type: string
-          description: Whitelisted IP address
-        comment:
-          type: string
-          description: Label/name for this slot
-    IpOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the operation succeeded
-        message:
-          type: string
-          description: Human-readable result message
-        slots:
-          type: array
-          items:
-            $ref: '#/components/schemas/IpSlot'
+    DetachIpRequest:
+      type: array
+      description: Array of slots or IPs to detach
+      items:
+        type: object
+        properties:
+          slot:
+            type: integer
+            description: Slot number to clear
+          ip:
+            type: string
+            description: IP address to detach
     UpdateIpRequest:
       type: array
       description: Array of IP slot updates
@@ -165,18 +152,31 @@ components:
           description: List of IP whitelist slots
           items:
             $ref: '#/components/schemas/IpSlot'
-    DetachIpRequest:
-      type: array
-      description: Array of slots or IPs to detach
-      items:
-        type: object
-        properties:
-          slot:
-            type: integer
-            description: Slot number to clear
-          ip:
-            type: string
-            description: IP address to detach
+    IpSlot:
+      type: object
+      properties:
+        slot:
+          type: integer
+          description: Slot number
+        ip:
+          type: string
+          description: Whitelisted IP address
+        comment:
+          type: string
+          description: Label/name for this slot
+    IpOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+        message:
+          type: string
+          description: Human-readable result message
+        slots:
+          type: array
+          items:
+            $ref: '#/components/schemas/IpSlot'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

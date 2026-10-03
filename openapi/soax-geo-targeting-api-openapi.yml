@@ -130,23 +130,6 @@ components:
               proxy_count:
                 type: integer
                 description: Number of available mobile proxies for this carrier
-    IspsResponse:
-      type: object
-      properties:
-        isps:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: ISP name
-              country:
-                type: string
-                description: Country code
-              proxy_count:
-                type: integer
-                description: Number of residential proxies available for this ISP
     CitiesResponse:
       type: object
       properties:
@@ -167,6 +150,23 @@ components:
               proxy_count:
                 type: integer
                 description: Number of available proxies in this city
+    IspsResponse:
+      type: object
+      properties:
+        isps:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: ISP name
+              country:
+                type: string
+                description: Country code
+              proxy_count:
+                type: integer
+                description: Number of residential proxies available for this ISP
     RegionsResponse:
       type: object
       properties:
