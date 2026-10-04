@@ -113,43 +113,6 @@ paths:
           description: Invalid API key
 components:
   schemas:
-    CarriersResponse:
-      type: object
-      properties:
-        carriers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Mobile carrier name
-              country:
-                type: string
-                description: Country code
-              proxy_count:
-                type: integer
-                description: Number of available mobile proxies for this carrier
-    CitiesResponse:
-      type: object
-      properties:
-        cities:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: City name
-              country:
-                type: string
-                description: Country code
-              region:
-                type: string
-                description: Region/state
-              proxy_count:
-                type: integer
-                description: Number of available proxies in this city
     IspsResponse:
       type: object
       properties:
@@ -184,6 +147,43 @@ components:
               proxy_count:
                 type: integer
                 description: Number of available proxies in this region
+    CitiesResponse:
+      type: object
+      properties:
+        cities:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: City name
+              country:
+                type: string
+                description: Country code
+              region:
+                type: string
+                description: Region/state
+              proxy_count:
+                type: integer
+                description: Number of available proxies in this city
+    CarriersResponse:
+      type: object
+      properties:
+        carriers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Mobile carrier name
+              country:
+                type: string
+                description: Country code
+              proxy_count:
+                type: integer
+                description: Number of available mobile proxies for this carrier
   securitySchemes:
     APIKeyHeader:
       type: apiKey

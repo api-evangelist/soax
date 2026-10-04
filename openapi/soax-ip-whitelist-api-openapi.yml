@@ -111,47 +111,6 @@ paths:
           description: Invalid API key
 components:
   schemas:
-    DetachIpRequest:
-      type: array
-      description: Array of slots or IPs to detach
-      items:
-        type: object
-        properties:
-          slot:
-            type: integer
-            description: Slot number to clear
-          ip:
-            type: string
-            description: IP address to detach
-    UpdateIpRequest:
-      type: array
-      description: Array of IP slot updates
-      items:
-        type: object
-        required:
-        - ip
-        - slot
-        properties:
-          ip:
-            type: string
-            description: IP address to whitelist
-            example: 203.0.113.10
-          slot:
-            type: integer
-            description: Slot number to assign the IP to
-            example: 1
-          comment:
-            type: string
-            description: Label for this IP slot
-            example: Office IP
-    IpListResponse:
-      type: object
-      properties:
-        slots:
-          type: array
-          description: List of IP whitelist slots
-          items:
-            $ref: '#/components/schemas/IpSlot'
     IpSlot:
       type: object
       properties:
@@ -177,6 +136,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IpSlot'
+    DetachIpRequest:
+      type: array
+      description: Array of slots or IPs to detach
+      items:
+        type: object
+        properties:
+          slot:
+            type: integer
+            description: Slot number to clear
+          ip:
+            type: string
+            description: IP address to detach
+    IpListResponse:
+      type: object
+      properties:
+        slots:
+          type: array
+          description: List of IP whitelist slots
+          items:
+            $ref: '#/components/schemas/IpSlot'
+    UpdateIpRequest:
+      type: array
+      description: Array of IP slot updates
+      items:
+        type: object
+        required:
+        - ip
+        - slot
+        properties:
+          ip:
+            type: string
+            description: IP address to whitelist
+            example: 203.0.113.10
+          slot:
+            type: integer
+            description: Slot number to assign the IP to
+            example: 1
+          comment:
+            type: string
+            description: Label for this IP slot
+            example: Office IP
   securitySchemes:
     APIKeyHeader:
       type: apiKey

@@ -44,33 +44,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    EcommerceRequest:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the product page to extract data from
-        extract:
-          type: array
-          description: Data fields to extract
-          items:
-            type: string
-            enum:
-            - price
-            - title
-            - description
-            - images
-            - rating
-            - reviews
-            - stock
-            - sku
-            - seller
-        country:
-          type: string
-          description: Country for localized pricing
     EcommerceResponse:
       type: object
       properties:
@@ -106,6 +79,33 @@ components:
           items:
             type: string
             format: uri
+    EcommerceRequest:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the product page to extract data from
+        extract:
+          type: array
+          description: Data fields to extract
+          items:
+            type: string
+            enum:
+            - price
+            - title
+            - description
+            - images
+            - rating
+            - reviews
+            - stock
+            - sku
+            - seller
+        country:
+          type: string
+          description: Country for localized pricing
   securitySchemes:
     APIKeyHeader:
       type: apiKey
