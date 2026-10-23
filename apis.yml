@@ -120,6 +120,8 @@ apis:
   - type: Documentation
     url: https://helpcenter.soax.com/en/collections/3470979-api
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/soax/overview
   - type: Plans
     url: plans/soax-plans-pricing.yml
   - type: RateLimits
