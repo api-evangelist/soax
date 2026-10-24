@@ -1,709 +1,723 @@
 {
+  "info": {
+    "_postman_id": "4aba802d-cb9a-44c7-90ea-cfca2c685145",
+    "name": "SOAX Proxy Management IP Whitelist API",
+    "description": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:18:32.000Z",
+    "updatedAt": "2026-10-21T21:18:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4aba802d-cb9a-44c7-90ea-cfca2c685145"
+  },
   "item": [
     {
-      "id": "4acc6d80-9883-43e3-b005-09a1d2b85237",
-      "name": "IP Whitelist",
-      "description": {
-        "content": "Manage whitelisted IP addresses for proxy authentication",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "4e2865fb-edef-48c7-ab9e-10912cd2d1ed",
-          "name": "List Whitelisted IPs",
-          "request": {
-            "name": "List Whitelisted IPs",
-            "description": {
-              "content": "Retrieve the list of whitelisted IP addresses for a proxy package slot.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "account",
-                "package",
-                ":package_key",
-                "ip-list"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "package_key",
-                  "description": "(Required) Your proxy package key from the SOAX dashboard"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "account",
+          "item": [
             {
-              "id": "a01489e7-0c42-451f-b14c-175ac24fb67d",
-              "name": "List of whitelisted IP slots",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "ip-list"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key from the SOAX dashboard"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "package",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{package_key}",
+                  "item": [
+                    {
+                      "name": "ip-list",
+                      "item": [
+                        {
+                          "name": "List Whitelisted IPs",
+                          "id": "888944f9-38c8-4962-9351-aa0db9351b53",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/package/:package_key/ip-list",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "package",
+                                ":package_key",
+                                "ip-list"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f6f9e9d9-d99a-439b-93f9-7b0bd3f9d735",
+                                  "key": "package_key",
+                                  "value": "<string>",
+                                  "description": "(Required) Your proxy package key from the SOAX dashboard"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the list of whitelisted IP addresses for a proxy package slot."
+                          },
+                          "response": [
+                            {
+                              "id": "b37ecfd2-cd5a-49b5-bcf8-6633c2b7d0b6",
+                              "name": "List of whitelisted IP slots",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/ip-list",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "ip-list"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"slots\": [\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-b37ecfd2-cd5a-49b5-bcf8-6633c2b7d0b6"
+                            },
+                            {
+                              "id": "07a69a88-a6dc-48ab-bdcd-d41e8e8d82e0",
+                              "name": "Invalid API key",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/ip-list",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "ip-list"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-07a69a88-a6dc-48ab-bdcd-d41e8e8d82e0"
+                            },
+                            {
+                              "id": "fb3052b6-48e8-4ff4-82f3-fd5f8da9dae2",
+                              "name": "Package not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/ip-list",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "ip-list"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-fb3052b6-48e8-4ff4-82f3-fd5f8da9dae2"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T21:18:33.000Z",
+                          "updatedAt": "2026-10-21T21:18:33.000Z",
+                          "uid": "35240-888944f9-38c8-4962-9351-aa0db9351b53"
+                        }
+                      ],
+                      "id": "270b670b-6318-4d62-8bd8-956a91457987",
+                      "createdAt": "2026-10-21T21:18:33.000Z",
+                      "updatedAt": "2026-10-21T21:18:33.000Z",
+                      "uid": "35240-270b670b-6318-4d62-8bd8-956a91457987"
+                    },
+                    {
+                      "name": "update-ip",
+                      "item": [
+                        {
+                          "name": "Update Whitelisted IP",
+                          "id": "54cf4d54-1695-4788-b0c8-fc8dbef206d7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/package/:package_key/update-ip",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "package",
+                                ":package_key",
+                                "update-ip"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "af7c6ee6-6420-4458-8c18-9d4209bc15c7",
+                                  "key": "package_key",
+                                  "value": "<string>",
+                                  "description": "(Required) Your proxy package key"
+                                }
+                              ]
+                            },
+                            "description": "Add or update an IP address in a proxy package whitelist slot."
+                          },
+                          "response": [
+                            {
+                              "id": "ed6fac12-c8cd-46a4-820a-0443c29c8e2a",
+                              "name": "IP address updated successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/update-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "update-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"slots\": [\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-ed6fac12-c8cd-46a4-820a-0443c29c8e2a"
+                            },
+                            {
+                              "id": "7e28a931-fbec-46c0-8221-099790a5e63c",
+                              "name": "Invalid IP address or slot number",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/update-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "update-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-7e28a931-fbec-46c0-8221-099790a5e63c"
+                            },
+                            {
+                              "id": "86be37bd-e855-427e-bf88-b3b630ab7f29",
+                              "name": "Invalid API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/update-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "update-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-86be37bd-e855-427e-bf88-b3b630ab7f29"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T21:18:33.000Z",
+                          "updatedAt": "2026-10-21T21:18:33.000Z",
+                          "uid": "35240-54cf4d54-1695-4788-b0c8-fc8dbef206d7"
+                        }
+                      ],
+                      "id": "7c52a683-9ad4-441a-925c-9e9fb18a02d6",
+                      "createdAt": "2026-10-21T21:18:33.000Z",
+                      "updatedAt": "2026-10-21T21:18:33.000Z",
+                      "uid": "35240-7c52a683-9ad4-441a-925c-9e9fb18a02d6"
+                    },
+                    {
+                      "name": "detach-ip",
+                      "item": [
+                        {
+                          "name": "Detach Whitelisted IP",
+                          "id": "1bc989a1-bb9a-4fff-9efe-4f5aa0035216",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/account/package/:package_key/detach-ip",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "account",
+                                "package",
+                                ":package_key",
+                                "detach-ip"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4e7c7298-593e-40ae-821f-65bfb7022856",
+                                  "key": "package_key",
+                                  "value": "<string>",
+                                  "description": "(Required) Your proxy package key"
+                                }
+                              ]
+                            },
+                            "description": "Remove an IP address from a proxy package whitelist slot by slot number or IP address."
+                          },
+                          "response": [
+                            {
+                              "id": "fa80ea04-244f-4abf-950e-844c2fb8b5e9",
+                              "name": "IP address removed successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/detach-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "detach-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"slots\": [\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"slot\": \"<integer>\",\n      \"ip\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-fa80ea04-244f-4abf-950e-844c2fb8b5e9"
+                            },
+                            {
+                              "id": "55367cd6-3f92-4105-a5ff-f1da2a9acef2",
+                              "name": "Invalid slot or IP not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/detach-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "detach-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-55367cd6-3f92-4105-a5ff-f1da2a9acef2"
+                            },
+                            {
+                              "id": "93c77c84-55bf-49af-b9d4-50238b52f29d",
+                              "name": "Invalid API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "api-key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/account/package/:package_key/detach-ip",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "account",
+                                    "package",
+                                    ":package_key",
+                                    "detach-ip"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "package_key"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-21T21:18:33.000Z",
+                              "updatedAt": "2026-10-21T21:18:33.000Z",
+                              "uid": "35240-93c77c84-55bf-49af-b9d4-50238b52f29d"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T21:18:33.000Z",
+                          "updatedAt": "2026-10-21T21:18:33.000Z",
+                          "uid": "35240-1bc989a1-bb9a-4fff-9efe-4f5aa0035216"
+                        }
+                      ],
+                      "id": "5fe94e29-737b-40ac-a53c-8592f6ce3a5b",
+                      "createdAt": "2026-10-21T21:18:33.000Z",
+                      "updatedAt": "2026-10-21T21:18:33.000Z",
+                      "uid": "35240-5fe94e29-737b-40ac-a53c-8592f6ce3a5b"
+                    }
+                  ],
+                  "id": "d9bd4d2c-0d86-42a3-9bf1-af99ec90fad0",
+                  "createdAt": "2026-10-21T21:18:33.000Z",
+                  "updatedAt": "2026-10-21T21:18:33.000Z",
+                  "uid": "35240-d9bd4d2c-0d86-42a3-9bf1-af99ec90fad0"
                 }
               ],
-              "body": "{\n  \"slots\": [\n    {\n      \"slot\": 6204,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    },\n    {\n      \"slot\": 2408,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0b786b1b-231b-4477-b279-e67ebc728d82",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "ip-list"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key from the SOAX dashboard"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "46e0cbc2-0b98-4359-abea-deffb72c6ac8",
-              "name": "Package not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "ip-list"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key from the SOAX dashboard"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "82dd6faa-c84e-4f80-8af2-0dc2e9c9ad2f",
+              "createdAt": "2026-10-21T21:18:33.000Z",
+              "updatedAt": "2026-10-21T21:18:33.000Z",
+              "uid": "35240-82dd6faa-c84e-4f80-8af2-0dc2e9c9ad2f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4ba698dc-16d5-4866-939e-e9a3d46e1424",
-          "name": "Update Whitelisted IP",
-          "request": {
-            "name": "Update Whitelisted IP",
-            "description": {
-              "content": "Add or update an IP address in a proxy package whitelist slot.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "account",
-                "package",
-                ":package_key",
-                "update-ip"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "package_key",
-                  "description": "(Required) Your proxy package key"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"ip\": \"<string>\",\n    \"slot\": \"<integer>\",\n    \"comment\": \"<string>\"\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1868f76c-3ebb-4111-a595-02771a32ccd6",
-              "name": "IP address updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "update-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"ip\": \"203.0.113.10\",\n    \"slot\": 1,\n    \"comment\": \"Office IP\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"message\": \"string\",\n  \"slots\": [\n    {\n      \"slot\": 1896,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    },\n    {\n      \"slot\": 3972,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dbc6c878-666f-4596-a788-2c348c8c47be",
-              "name": "Invalid IP address or slot number",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "update-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"ip\": \"203.0.113.10\",\n    \"slot\": 1,\n    \"comment\": \"Office IP\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cd8c316d-c406-46a2-9a54-3538fe8202a1",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "update-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"ip\": \"203.0.113.10\",\n    \"slot\": 1,\n    \"comment\": \"Office IP\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3c14e692-31ad-415c-bca8-75b6b54f8473",
-          "name": "Detach Whitelisted IP",
-          "request": {
-            "name": "Detach Whitelisted IP",
-            "description": {
-              "content": "Remove an IP address from a proxy package whitelist slot by slot number or IP address.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "account",
-                "package",
-                ":package_key",
-                "detach-ip"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "package_key",
-                  "description": "(Required) Your proxy package key"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fdf07014-5b63-498b-a336-213d72b3047b",
-              "name": "IP address removed successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "detach-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": false,\n  \"message\": \"string\",\n  \"slots\": [\n    {\n      \"slot\": 2912,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    },\n    {\n      \"slot\": 3848,\n      \"ip\": \"string\",\n      \"comment\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5e63c91f-7d2c-4b2a-b9d0-fca9beaddc49",
-              "name": "Invalid slot or IP not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "detach-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2fc4fa2c-3bba-4a87-a5a5-8b7c2365b63b",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "account",
-                    "package",
-                    ":package_key",
-                    "detach-ip"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "package_key",
-                      "description": "(Required) Your proxy package key"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  },\n  {\n    \"slot\": \"<integer>\",\n    \"ip\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c905ed4c-0e5e-4ec4-bdbe-e4832edac540",
+          "createdAt": "2026-10-21T21:18:33.000Z",
+          "updatedAt": "2026-10-21T21:18:33.000Z",
+          "uid": "35240-c905ed4c-0e5e-4ec4-bdbe-e4832edac540"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://partner.api.soax.com",
-      "key": "baseUrl"
+      "id": "7bdf7ab5-2dce-4f0d-a78e-ad245dbe13c7",
+      "createdAt": "2026-10-21T21:18:33.000Z",
+      "updatedAt": "2026-10-21T21:18:33.000Z",
+      "uid": "35240-7bdf7ab5-2dce-4f0d-a78e-ad245dbe13c7"
     }
   ],
   "auth": {
@@ -711,25 +725,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "7c90dc6d-e28e-4bc9-84ce-491932f95e48",
-    "name": "SOAX Proxy Management Ecommerce Data IP Whitelist API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://partner.api.soax.com"
     }
-  }
+  ]
 }

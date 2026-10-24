@@ -1,583 +1,600 @@
 {
+  "info": {
+    "_postman_id": "b694820f-a42d-42e0-b451-147eed87727a",
+    "name": "SOAX Proxy Management Geo Targeting API",
+    "description": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:18:26.000Z",
+    "updatedAt": "2026-10-21T21:18:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b694820f-a42d-42e0-b451-147eed87727a"
+  },
   "item": [
     {
-      "id": "bd685332-df1e-42fb-ba9b-c45d2bb17bca",
-      "name": "Geo Targeting",
-      "description": {
-        "content": "Retrieve available cities, regions, carriers, and ISPs for proxy targeting",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "8fcded2b-c80a-4890-82c1-b80030d84896",
-          "name": "List Cities",
-          "request": {
-            "name": "List Cities",
-            "description": {
-              "content": "Retrieve the list of available cities for proxy geo-targeting.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "geo",
-                "cities"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "Filter cities by country code"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "geo",
+          "item": [
             {
-              "id": "cf283cb6-5b90-47d7-acb7-d1767ab09764",
-              "name": "List of available cities",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "cities"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "us"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
+              "name": "cities",
+              "item": [
+                {
+                  "name": "List Cities",
+                  "id": "deccfa4e-2eea-45fe-b6df-0587aba24fe1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"cities\": [\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"region\": \"string\",\n      \"proxy_count\": 9612\n    },\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"region\": \"string\",\n      \"proxy_count\": 9313\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8fcf201c-ca24-4879-82e1-a1ea48a7cb38",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "cities"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/geo/cities?country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "geo",
+                        "cities"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter cities by country code",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of available cities for proxy geo-targeting."
+                  },
+                  "response": [
                     {
-                      "key": "country",
-                      "value": "us"
+                      "id": "cfa1ba87-ccdf-4ebb-9d06-043bb24ee429",
+                      "name": "List of available cities",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/cities?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "cities"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter cities by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cities\": [\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"region\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-cfa1ba87-ccdf-4ebb-9d06-043bb24ee429"
+                    },
+                    {
+                      "id": "8389f8e5-b4b2-4e86-88e0-2dce59f7122c",
+                      "name": "Invalid API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/cities?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "cities"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter cities by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-8389f8e5-b4b2-4e86-88e0-2dce59f7122c"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "createdAt": "2026-10-21T21:18:26.000Z",
+                  "updatedAt": "2026-10-21T21:18:26.000Z",
+                  "uid": "35240-deccfa4e-2eea-45fe-b6df-0587aba24fe1"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "7f69a3d4-926e-4b1c-85b9-36c1f2f7e4ff",
+              "createdAt": "2026-10-21T21:18:26.000Z",
+              "updatedAt": "2026-10-21T21:18:26.000Z",
+              "uid": "35240-7f69a3d4-926e-4b1c-85b9-36c1f2f7e4ff"
+            },
+            {
+              "name": "regions",
+              "item": [
+                {
+                  "name": "List Regions",
+                  "id": "4bb56388-31b7-401d-bf9a-33b74bb63cfa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/geo/regions?country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "geo",
+                        "regions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter regions by country code",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of available regions/states for proxy geo-targeting."
+                  },
+                  "response": [
+                    {
+                      "id": "924f0215-e772-47bf-93e2-a0255da844fc",
+                      "name": "List of available regions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/regions?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "regions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter regions by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"regions\": [\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-924f0215-e772-47bf-93e2-a0255da844fc"
+                    },
+                    {
+                      "id": "456cd0a8-2e79-49d9-a0c9-902f8c8c3e9b",
+                      "name": "Invalid API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/regions?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "regions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter regions by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-456cd0a8-2e79-49d9-a0c9-902f8c8c3e9b"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:18:26.000Z",
+                  "updatedAt": "2026-10-21T21:18:26.000Z",
+                  "uid": "35240-4bb56388-31b7-401d-bf9a-33b74bb63cfa"
+                }
+              ],
+              "id": "60458855-e9fb-47e1-bfc0-d364f3995449",
+              "createdAt": "2026-10-21T21:18:26.000Z",
+              "updatedAt": "2026-10-21T21:18:26.000Z",
+              "uid": "35240-60458855-e9fb-47e1-bfc0-d364f3995449"
+            },
+            {
+              "name": "carriers",
+              "item": [
+                {
+                  "name": "List Mobile Carriers",
+                  "id": "d092ba1c-1dd5-452f-8500-2f024a3bccde",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/geo/carriers?country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "geo",
+                        "carriers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter carriers by country code",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of available mobile carriers for mobile proxy targeting."
+                  },
+                  "response": [
+                    {
+                      "id": "f408ec32-3b33-4189-94c3-38af32991128",
+                      "name": "List of available mobile carriers",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/carriers?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "carriers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter carriers by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"carriers\": [\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-f408ec32-3b33-4189-94c3-38af32991128"
+                    },
+                    {
+                      "id": "20dd050b-948c-4f74-8024-19cd978c3852",
+                      "name": "Invalid API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/carriers?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "carriers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter carriers by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-20dd050b-948c-4f74-8024-19cd978c3852"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:18:26.000Z",
+                  "updatedAt": "2026-10-21T21:18:26.000Z",
+                  "uid": "35240-d092ba1c-1dd5-452f-8500-2f024a3bccde"
+                }
+              ],
+              "id": "ee3275a7-19dc-4cff-a60b-2687384272ce",
+              "createdAt": "2026-10-21T21:18:26.000Z",
+              "updatedAt": "2026-10-21T21:18:26.000Z",
+              "uid": "35240-ee3275a7-19dc-4cff-a60b-2687384272ce"
+            },
+            {
+              "name": "isps",
+              "item": [
+                {
+                  "name": "List WiFi ISPs",
+                  "id": "da89f070-eff0-477c-b447-7f97fb9d1a10",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/geo/isps?country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "geo",
+                        "isps"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter ISPs by country code",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of available WiFi ISPs for residential proxy targeting."
+                  },
+                  "response": [
+                    {
+                      "id": "992511d4-ad9e-42fb-889d-57ff0014e4fd",
+                      "name": "List of available WiFi ISPs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/isps?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "isps"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter ISPs by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"isps\": [\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"proxy_count\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-992511d4-ad9e-42fb-889d-57ff0014e4fd"
+                    },
+                    {
+                      "id": "bc2cc946-c940-44ee-b923-ba344aaa0351",
+                      "name": "Invalid API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/geo/isps?country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "geo",
+                            "isps"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter ISPs by country code",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:26.000Z",
+                      "updatedAt": "2026-10-21T21:18:26.000Z",
+                      "uid": "35240-bc2cc946-c940-44ee-b923-ba344aaa0351"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T21:18:26.000Z",
+                  "updatedAt": "2026-10-21T21:18:26.000Z",
+                  "uid": "35240-da89f070-eff0-477c-b447-7f97fb9d1a10"
+                }
+              ],
+              "id": "ccd39033-65d8-4fdb-a207-52354004aeb8",
+              "createdAt": "2026-10-21T21:18:26.000Z",
+              "updatedAt": "2026-10-21T21:18:26.000Z",
+              "uid": "35240-ccd39033-65d8-4fdb-a207-52354004aeb8"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "397ed738-ddef-4a03-9469-fdcd0c0b8bfb",
-          "name": "List Regions",
-          "request": {
-            "name": "List Regions",
-            "description": {
-              "content": "Retrieve the list of available regions/states for proxy geo-targeting.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "geo",
-                "regions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "Filter regions by country code"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ad2efdc2-f22f-4148-988e-7be224a1f88d",
-              "name": "List of available regions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "regions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"regions\": [\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 6437\n    },\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 3230\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "15119d83-806c-4509-92b7-f6e83b838b06",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "regions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dec2db73-20d8-4b5c-b27d-f25bbd128daa",
-          "name": "List Mobile Carriers",
-          "request": {
-            "name": "List Mobile Carriers",
-            "description": {
-              "content": "Retrieve the list of available mobile carriers for mobile proxy targeting.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "geo",
-                "carriers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "Filter carriers by country code"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "44965570-446e-4729-94f8-952aea25f843",
-              "name": "List of available mobile carriers",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "carriers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"carriers\": [\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 8052\n    },\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 7063\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "60b1dcca-882f-4834-a576-506d8fe86e56",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "carriers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e8458f09-7363-4cc6-bd1b-614c63e6b59b",
-          "name": "List WiFi ISPs",
-          "request": {
-            "name": "List WiFi ISPs",
-            "description": {
-              "content": "Retrieve the list of available WiFi ISPs for residential proxy targeting.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "geo",
-                "isps"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "country",
-                  "value": "<string>",
-                  "description": "Filter ISPs by country code"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "bffa46ad-23e0-41a3-9eee-fd2b4baa7a51",
-              "name": "List of available WiFi ISPs",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "isps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"isps\": [\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 4760\n    },\n    {\n      \"name\": \"string\",\n      \"country\": \"string\",\n      \"proxy_count\": 615\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0b1411fa-6bd2-4bb9-bb4b-07dff1b8969c",
-              "name": "Invalid API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "geo",
-                    "isps"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "country",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9a5e59dc-f76d-44a8-ac32-ff2bef42f970",
+          "createdAt": "2026-10-21T21:18:26.000Z",
+          "updatedAt": "2026-10-21T21:18:26.000Z",
+          "uid": "35240-9a5e59dc-f76d-44a8-ac32-ff2bef42f970"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://partner.api.soax.com",
-      "key": "baseUrl"
+      "id": "2e524c55-d2ba-4a98-ba89-c5c34e44902b",
+      "createdAt": "2026-10-21T21:18:26.000Z",
+      "updatedAt": "2026-10-21T21:18:26.000Z",
+      "uid": "35240-2e524c55-d2ba-4a98-ba89-c5c34e44902b"
     }
   ],
   "auth": {
@@ -585,25 +602,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f72c316d-83b2-4e1f-ab41-7b66d5e95f82",
-    "name": "SOAX Proxy Management Ecommerce Data Geo Targeting API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://partner.api.soax.com"
     }
-  }
+  ]
 }

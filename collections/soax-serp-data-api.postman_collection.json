@@ -1,224 +1,244 @@
 {
+  "info": {
+    "_postman_id": "08cee8c0-dae9-4baf-8b09-17648fabe4a8",
+    "name": "SOAX Proxy Management Ecommerce Data SERP Data API",
+    "description": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:18:39.000Z",
+    "updatedAt": "2026-10-21T21:18:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-08cee8c0-dae9-4baf-8b09-17648fabe4a8"
+  },
   "item": [
     {
-      "id": "d6a52df5-fd8d-4ebf-8f20-a3c46fb0aed7",
-      "name": "SERP Data",
-      "description": {
-        "content": "Search engine result page extraction",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "ccda8766-bf23-49dc-b565-a71877f9d4c4",
-          "name": "Fetch SERP Data",
-          "request": {
-            "name": "Fetch SERP Data",
-            "description": {
-              "content": "Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "webdata",
-                "serp"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"<string>\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "webdata",
+          "item": [
             {
-              "id": "7a589642-48e5-47ec-9551-8544f06975bf",
-              "name": "SERP data extracted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "serp"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
+              "name": "serp",
+              "item": [
+                {
+                  "name": "Fetch SERP Data",
+                  "id": "c8fd95f8-5972-41d3-924b-a471f9ebf4d2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"query\": \"string\",\n  \"total_results\": 2747,\n  \"organic_results\": [\n    {\n      \"position\": 4569,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\"\n    },\n    {\n      \"position\": 8496,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"snippet\": \"string\"\n    }\n  ],\n  \"featured_snippet\": {\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"url\": \"string\"\n  },\n  \"ads\": [\n    {\n      \"position\": 8487,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"position\": 6986,\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"description\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0f7eafc0-58bb-4394-95e8-ec47b15a5ce2",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "serp"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"yahoo\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cd7d8e84-1575-4626-887d-495840c0c592",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "serp"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/webdata/serp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "webdata",
+                        "serp"
+                      ]
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"best proxy providers 2026\",\n  \"search_engine\": \"google\",\n  \"country\": \"us\",\n  \"language\": \"en\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    "description": "Extract search engine result page data from Google, Bing, and other search engines with geo-targeting. Returns structured search results, ads, and featured snippets."
+                  },
+                  "response": [
+                    {
+                      "id": "b3bf1e6e-b960-4ba6-90d5-dc7fbb7e8c6b",
+                      "name": "SERP data extracted successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"yahoo\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/serp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "serp"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"query\": \"<string>\",\n  \"total_results\": \"<integer>\",\n  \"organic_results\": [\n    {\n      \"position\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"snippet\": \"<string>\"\n    },\n    {\n      \"position\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"snippet\": \"<string>\"\n    }\n  ],\n  \"featured_snippet\": {\n    \"title\": \"<string>\",\n    \"content\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"ads\": [\n    {\n      \"position\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"position\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T21:18:39.000Z",
+                      "updatedAt": "2026-10-21T21:18:39.000Z",
+                      "uid": "35240-b3bf1e6e-b960-4ba6-90d5-dc7fbb7e8c6b"
+                    },
+                    {
+                      "id": "08a7cb6a-422c-45c2-9550-0ccc5541c5c2",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"yahoo\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/serp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "serp"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:39.000Z",
+                      "updatedAt": "2026-10-21T21:18:39.000Z",
+                      "uid": "35240-08a7cb6a-422c-45c2-9550-0ccc5541c5c2"
+                    },
+                    {
+                      "id": "2e2e9d06-beaa-40b8-91c9-d598b41d9376",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"search_engine\": \"yahoo\",\n  \"country\": \"<string>\",\n  \"language\": \"<string>\",\n  \"page\": 1,\n  \"results_per_page\": 10\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/serp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "serp"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:39.000Z",
+                      "updatedAt": "2026-10-21T21:18:39.000Z",
+                      "uid": "35240-2e2e9d06-beaa-40b8-91c9-d598b41d9376"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-21T21:18:39.000Z",
+                  "updatedAt": "2026-10-21T21:18:39.000Z",
+                  "uid": "35240-c8fd95f8-5972-41d3-924b-a471f9ebf4d2"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "946c3fba-8a87-418e-93e3-2082fb8eccb3",
+              "createdAt": "2026-10-21T21:18:39.000Z",
+              "updatedAt": "2026-10-21T21:18:39.000Z",
+              "uid": "35240-946c3fba-8a87-418e-93e3-2082fb8eccb3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b3b71bb3-5ff8-4a6e-ae92-2e9a621386f9",
+          "createdAt": "2026-10-21T21:18:39.000Z",
+          "updatedAt": "2026-10-21T21:18:39.000Z",
+          "uid": "35240-b3b71bb3-5ff8-4a6e-ae92-2e9a621386f9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://partner.api.soax.com",
-      "key": "baseUrl"
+      "id": "a5d7b76c-3609-43cf-aca4-66e1a79ccf73",
+      "createdAt": "2026-10-21T21:18:39.000Z",
+      "updatedAt": "2026-10-21T21:18:39.000Z",
+      "uid": "35240-a5d7b76c-3609-43cf-aca4-66e1a79ccf73"
     }
   ],
   "auth": {
@@ -226,25 +246,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "dba90e3d-3a15-442c-9dc9-e68793a88c0f",
-    "name": "SOAX Proxy Management Ecommerce Data SERP Data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://partner.api.soax.com"
     }
-  }
+  ]
 }

@@ -1,326 +1,351 @@
 {
+  "info": {
+    "_postman_id": "be85ef4f-01b0-4a56-935a-f1acabe49a42",
+    "name": "SOAX Proxy Management Ecommerce Data Web Data API",
+    "description": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:18:14.000Z",
+    "updatedAt": "2026-10-21T21:18:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-be85ef4f-01b0-4a56-935a-f1acabe49a42"
+  },
   "item": [
     {
-      "id": "2734ce4a-a252-456d-9acd-5d168ffbeca8",
-      "name": "Web Data",
-      "description": {
-        "content": "Extract content from web pages",
-        "type": "text/plain"
-      },
+      "name": "v2",
       "item": [
         {
-          "id": "0641995c-71d7-416a-9abd-d24f6025bb75",
-          "name": "Fetch Web Content",
-          "request": {
-            "name": "Fetch Web Content",
-            "description": {
-              "content": "Fetch fully rendered content from any public web page. Handles JavaScript execution, CAPTCHA bypass, anti-bot circumvention, and headless browser management automatically. Returns HTML body, screenshots, XHR calls, or Markdown depending on response configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v2",
-                "webdata",
-                "fetch-content"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": \"<integer>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "webdata",
+          "item": [
             {
-              "id": "951e0bb6-a7e7-4946-9bf4-b8bd19e4b19f",
-              "name": "Successfully extracted web content",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "fetch-content"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "api-key",
-                    "value": "<API Key>"
+              "name": "fetch-content",
+              "item": [
+                {
+                  "name": "Fetch Web Content",
+                  "id": "b3e51207-2e7b-4a56-8fff-642333da700e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"https://www.example.com\",\n  \"proxy_settings\": {\n    \"country\": \"us\",\n    \"type\": 1\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"status\": 200,\n  \"url\": \"http://DvGsNxPEukhMgHVfGgyD.ixxEH3mu1RDs,dBh5zSIvvS1A9IUb6B4KcUjU0Jgpdz+EzlVcp.L1,nBtOSj5PWr0qpK2LcD\",\n  \"body\": \"string\",\n  \"screenshot\": \"string\",\n  \"xhr\": [\n    {\n      \"url\": \"string\",\n      \"method\": \"string\",\n      \"status\": 7796,\n      \"body\": \"string\"\n    },\n    {\n      \"url\": \"string\",\n      \"method\": \"string\",\n      \"status\": 1177,\n      \"body\": \"string\"\n    }\n  ],\n  \"markdown\": \"string\",\n  \"metadata\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"proxy_used\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5c90d7a6-1bfa-4e0d-a382-b7dc7e2411e5",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "fetch-content"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "webdata",
+                        "fetch-content"
+                      ]
+                    },
+                    "description": "Fetch fully rendered content from any public web page. Handles JavaScript execution, CAPTCHA bypass, anti-bot circumvention, and headless browser management automatically. Returns HTML body, screenshots, XHR calls, or Markdown depending on response configuration."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"https://www.example.com\",\n  \"proxy_settings\": {\n    \"country\": \"us\",\n    \"type\": 1\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"request_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "11e0faf0-ea8e-4bfb-bc5f-4ea568c03b70",
-              "name": "Invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "fetch-content"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "response": [
+                    {
+                      "id": "ae248db3-e223-490f-a129-3a02d5c6366e",
+                      "name": "Successfully extracted web content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "fetch-content"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"url\": \"<uri>\",\n  \"body\": \"<string>\",\n  \"screenshot\": \"<string>\",\n  \"xhr\": [\n    {\n      \"url\": \"<string>\",\n      \"method\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"body\": \"<string>\"\n    },\n    {\n      \"url\": \"<string>\",\n      \"method\": \"<string>\",\n      \"status\": \"<integer>\",\n      \"body\": \"<string>\"\n    }\n  ],\n  \"markdown\": \"<string>\",\n  \"metadata\": {\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"proxy_used\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:18:15.000Z",
+                      "updatedAt": "2026-10-21T21:18:15.000Z",
+                      "uid": "35240-ae248db3-e223-490f-a129-3a02d5c6366e"
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"https://www.example.com\",\n  \"proxy_settings\": {\n    \"country\": \"us\",\n    \"type\": 1\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "50411493-56b8-436d-aea6-405beaf60f43",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "fetch-content"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                    {
+                      "id": "a48ad1a8-b8ec-4bcc-9faa-d012b60368ff",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "fetch-content"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"request_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T21:18:15.000Z",
+                      "updatedAt": "2026-10-21T21:18:15.000Z",
+                      "uid": "35240-a48ad1a8-b8ec-4bcc-9faa-d012b60368ff"
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"https://www.example.com\",\n  \"proxy_settings\": {\n    \"country\": \"us\",\n    \"type\": 1\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "fa7af98c-23d4-4246-ba87-067866b15d0a",
-              "name": "Internal server error or target site failure",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v2",
-                    "webdata",
-                    "fetch-content"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                    {
+                      "id": "b09d8658-e46e-4295-b75e-553d9b03a132",
+                      "name": "Invalid or missing API key",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "fetch-content"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:15.000Z",
+                      "updatedAt": "2026-10-21T21:18:15.000Z",
+                      "uid": "35240-b09d8658-e46e-4295-b75e-553d9b03a132"
                     },
-                    "key": "api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"https://www.example.com\",\n  \"proxy_settings\": {\n    \"country\": \"us\",\n    \"type\": 1\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "id": "755a3530-0fd4-47f4-9c4a-0cdb662bc4af",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "fetch-content"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:15.000Z",
+                      "updatedAt": "2026-10-21T21:18:15.000Z",
+                      "uid": "35240-755a3530-0fd4-47f4-9c4a-0cdb662bc4af"
+                    },
+                    {
+                      "id": "85c7147c-97b1-4f92-8ba7-2ecab862d443",
+                      "name": "Internal server error or target site failure",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"proxy_settings\": {\n    \"country\": \"<string>\",\n    \"type\": 2,\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"isp\": \"<string>\"\n  },\n  \"response\": {\n    \"body\": true,\n    \"screenshot\": false,\n    \"xhr\": false,\n    \"markdown\": false\n  },\n  \"session\": {\n    \"sticky\": false,\n    \"session_id\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/webdata/fetch-content",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "webdata",
+                            "fetch-content"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-21T21:18:15.000Z",
+                      "updatedAt": "2026-10-21T21:18:15.000Z",
+                      "uid": "35240-85c7147c-97b1-4f92-8ba7-2ecab862d443"
                     }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-21T21:18:15.000Z",
+                  "updatedAt": "2026-10-21T21:18:15.000Z",
+                  "uid": "35240-b3e51207-2e7b-4a56-8fff-642333da700e"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "1617ca9c-a153-461d-937a-06002d2c840f",
+              "createdAt": "2026-10-21T21:18:15.000Z",
+              "updatedAt": "2026-10-21T21:18:15.000Z",
+              "uid": "35240-1617ca9c-a153-461d-937a-06002d2c840f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "162675a4-01ed-41b2-b152-b2845e6405f5",
+          "createdAt": "2026-10-21T21:18:15.000Z",
+          "updatedAt": "2026-10-21T21:18:15.000Z",
+          "uid": "35240-162675a4-01ed-41b2-b152-b2845e6405f5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://partner.api.soax.com",
-      "key": "baseUrl"
+      "id": "ded86ce6-941a-4d98-8262-b8e8478e87d2",
+      "createdAt": "2026-10-21T21:18:15.000Z",
+      "updatedAt": "2026-10-21T21:18:15.000Z",
+      "uid": "35240-ded86ce6-941a-4d98-8262-b8e8478e87d2"
     }
   ],
   "auth": {
@@ -328,25 +353,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "api-key"
+        "value": "api-key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "06360b7e-bdc1-4492-a846-790164ef87b9",
-    "name": "SOAX Proxy Management Ecommerce Data Web Data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The SOAX Proxy Management API enables programmatic control of proxy packages. Manage IP whitelists, configure proxy endpoints, and retrieve geo-targeting options including cities, regions, carriers, and ISPs across 195+ countries.\n\nContact Support:\n Name: SOAX Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://partner.api.soax.com"
     }
-  }
+  ]
 }
